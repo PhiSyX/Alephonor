@@ -1,0 +1,7 @@
+{
+	"name": "@alephonor/sheets",
+	"private": true,
+	"description": "CSS for Alephonor",
+	"version": "0.1.0",
+	"dependencies": {}
+}

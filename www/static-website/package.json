@@ -1,0 +1,21 @@
+{
+	"name": "@alephonor/static-website",
+	"private": true,
+	"version": "0.1.0",
+	"type": "module",
+	"scripts": {
+		"dev": "astro dev",
+		"preview": "astro preview",
+		"build": "astro build"
+	},
+	"dependencies": {
+		"@alephonor/sheets": "workspace:",
+		"@astrojs/mdx": "^4.1.0",
+		"@astrojs/rss": "^4.0.11",
+		"@astrojs/sitemap": "^3.2.1",
+		"astro": "^5.4.1"
+	},
+	"devDependencies": {
+		"sass-embedded": "catalog:"
+	}
+}

@@ -1,0 +1,52 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"a"> {
+	appearance?: "button" | "link";
+}
+
+const { href, class: className, appearance = "link", ...props } = Astro.props;
+const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, "");
+const subpath = pathname.match(/[^\/]+/g);
+const isActive =
+	href === pathname ||
+	[`./${subpath?.[0] || ""}`, `/${subpath?.[0] || ""}`].includes(
+		href?.toString() || ""
+	);
+---
+
+<a
+	href={href}
+	class:list={[className, { active: isActive, btn: appearance === "button" }]}
+	{...props}
+>
+	<slot />
+</a>
+
+<style>
+	:root {
+		--header-link-on-surface: var(--color-black);
+		--header-link-spacing-block: 1rem;
+		--header-link-spacing-inline: .5rem;
+	}
+
+	a {
+		display: inline-block;
+		padding: var(--header-link-spacing-block) var(--header-link-spacing-inline);
+		color: var(--header-link-on-surface);
+		text-decoration: none;
+	}
+
+	a.active {
+		/* font-weight: 700; */
+	}
+
+	a.btn {
+		display: inline-block;
+		padding: var(--header-link-spacing-block);
+		border: 3px solid var(--color-blue-700);
+		border-radius: var(--radius-full);
+		background: var(--color-blue-300);
+		color: var(--color-blue-50);
+	}
+</style>

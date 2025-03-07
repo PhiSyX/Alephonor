@@ -1,0 +1,44 @@
+---
+import HeaderLink from "../../components/HeaderLink.astro";
+
+import { SITE_TITLE } from "../../consts";
+---
+
+<header role="banner" class="l-header header">
+	<nav role="navigation">
+		<div>
+			<a href="#">LOGO</a>
+		</div>
+
+		<ul role="tablist">
+			<li>
+				<HeaderLink href="./">
+					{SITE_TITLE}
+				</HeaderLink>
+			</li>
+		</ul>
+
+		<ul role="tablist">
+			<li>
+				<HeaderLink href="#" appearance="button">
+					Plan & Pricing
+				</HeaderLink>
+			</li>
+		</ul>
+	</nav>
+</header>
+
+<style>
+	:root {
+		--header-spacing: space-between;
+	}
+
+	header[role="banner"] {
+		padding: 1rem 3rem;
+	}
+
+	nav[role="navigation"] {
+		display: flex;
+		justify-content: var(--header-spacing);
+	}
+</style>
