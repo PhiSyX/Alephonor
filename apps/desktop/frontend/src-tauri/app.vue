@@ -19,6 +19,10 @@ let currentScreen = shallowRef(Screen.SignIn);
 function changeScreen(s: Screen): void {
 	currentScreen.value = s;
 }
+
+if (import.meta.env.PROD) {
+	document.addEventListener("contextmenu", (event) => event.preventDefault());
+}
 </script>
 
 <template>

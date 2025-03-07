@@ -3,8 +3,7 @@ use crate::{apache, mysql};
 #[tauri::command]
 pub async fn check_amp_service_status() -> bool
 {
-	let mut s = false;
-	s = apache::check_apache2_service_status().await;
+	let mut s = apache::check_apache2_service_status().await;
 	s &= mysql::check_mysql_service_status().await;
 	s
 }
