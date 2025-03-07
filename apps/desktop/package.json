@@ -4,6 +4,7 @@
 	"version": "0.1.0",
 	"type": "module",
 	"imports": {
+		"#styles/*": "./frontend/assets/styles/*",
 		"#components/*": "./frontend/src/components/*",
 		"#screens": "./frontend/src/screens/index.ts",
 		"#screens/*": "./frontend/src/screens/*"

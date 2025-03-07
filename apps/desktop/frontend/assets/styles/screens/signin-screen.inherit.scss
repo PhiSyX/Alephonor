@@ -1,0 +1,28 @@
+$input-surface: transparent !default;
+$input-surface-alt: transparent !default;
+$input-on-surface: transparent !default;
+
+@layer screens {
+	.auth-container {
+		--input-surface: #{$input-surface};
+		--input-surface-alt: #{$input-surface-alt};
+		--input-on-surface: #{$input-on-surface};
+
+		align-items: center;
+	}
+
+	.bg-gradient-l {
+		background: linear-gradient(
+			to left,
+			var(--input-surface) 70%,
+			var(--input-surface-alt)
+		);
+	}
+	.bg-gradient-r {
+		background: linear-gradient(
+			to right,
+			var(--input-surface),
+			var(--input-surface-alt)
+		);
+	}
+}

@@ -1,0 +1,11 @@
+[
+	{
+		"name": "amp_service",
+		"title": "Apache, PHP et MySQL",
+		"commands": {
+			"check": "check_amp_service_status",
+			"start": "start_amp_service",
+			"stop": "stop_amp_service"
+		}
+	}
+]

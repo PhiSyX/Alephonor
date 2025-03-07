@@ -32,5 +32,5 @@ const model = defineModel();
 </template>
 
 <style>
-@import "../../assets/styles/components/input.css" layer(components);
+@import "#styles/components/input.css" layer(components);
 </style>

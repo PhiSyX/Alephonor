@@ -2,14 +2,11 @@
 import { invoke } from "@tauri-apps/api/core";
 import { onMounted, ref } from "vue";
 
-import type { Screen } from "#screens";
+import { emitChangeScreen, type ScreenEmits } from "#screens";
 
 import SigninScreen, { type AccountInfo } from "#screens/signin-screen.vue";
 
-interface Emits {
-	// biome-ignore lint/style/useShorthandFunctionType: .-)
-	(event_name: "change-screen", s: Screen): void;
-}
+interface Emits extends ScreenEmits {}
 
 defineEmits<Emits>();
 
@@ -28,6 +25,6 @@ function handleSubmit(rawPassword: string): Promise<boolean> {
 	<SigninScreen
 		:account-info="accountInfo"
 		@submit="handleSubmit"
-		@change-screen="(s) => $emit('change-screen', s)"
+		@change-screen="(s) => emitChangeScreen($emit)(s)"
 	/>
 </template>

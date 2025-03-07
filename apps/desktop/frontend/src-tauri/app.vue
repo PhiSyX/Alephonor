@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineAsyncComponent, ref } from "vue";
+import { defineAsyncComponent, shallowRef } from "vue";
 
 import { Screen } from "../src/screens";
 
@@ -14,7 +14,7 @@ defineOptions({
 	},
 });
 
-let currentScreen = ref(Screen.SignIn);
+let currentScreen = shallowRef(Screen.SignIn);
 
 function changeScreen(s: Screen): void {
 	currentScreen.value = s;

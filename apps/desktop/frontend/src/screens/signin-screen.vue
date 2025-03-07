@@ -164,135 +164,24 @@ async function post_account_form() {
 </template>
 
 <style>
-:root {
-	--auth-signin-surface: var(--color-black);
-	--auth-signin-on-surface: var(--color-white);
-	--auth-signin-signin-on-surface: #d4d4d4;
-	--auth-signin-signin-note-on-surface: #999fd1;
-	--auth-signin-link: var(--color-red);
-}
+@import "../../assets/styles/screens/signin-screen.vars.css";
 </style>
 
-<style scoped>
-.auth-signin {
-	max-width: 70ch;
-	margin-inline: auto;
-	padding: var(--spacing-8) var(--spacing-10);
-	background: var(--auth-signin-surface);
-	color: var(--auth-signin-on-surface);
-
-	& > * + * {
-		margin-top: var(--spacing-3);
-	}
-}
-
-.auth-title {
-	font-size: 24px;
-
-	small {
-		padding: 4px;
-		border-radius: 8px;
-		background: v-bind(randomBgColor);
-		color: v-bind(randomColor);
-	}
-}
-
-.auth-avatar {
-	max-width: 150px;
-	max-height: 150px;
-	margin-inline: auto;
-	& img {
-		display: inline-block;
-		width: 100%;
-		max-height: inherit;
-		border-radius: var(--radius-full);
-	}
-}
-
-.auth-signin > p {
-	color: var(--auth-signin-signin-on-surface);
-}
-
-.auth-note {
-	color: var(--auth-signin-signin-note-on-surface) !important;
-}
-
-form {
-	display: grid;
-	gap: var(--spacing-2);
-}
-
-.auth-input-error {
-	animation: 250ms shake-anim alternate;
-}
-
-@keyframes shake-anim {
-	0% {
-		transform: translateX(-2%);
-		margin-left: 0rem;
-	}
-	25% {
-		margin-left: 0.5rem;
-	}
-	75% {
-		margin-left: -0.5rem;
-	}
-	100% {
-		transform: translateX(2%);
-		margin-left: 0rem;
-	}
-}
-
-button[type="submit"] {
-	width: max-content;
-	padding-block: var(--spacing-1);
-	padding-inline: var(--spacing-5);
-	border: none;
-	border-radius: var(--radius-m);
-}
-
-hr {
-	--hr-bordered: #3747b6;
-	--hr-surface: var(--auth-signin-surface);
-	--hr-on-surface: var(--auth-signin-on-surface);
-
-	width: var(--size-full);
-}
-a {
-	color: var(--auth-signin-link);
-	text-align: center;
-}
-
-.input-group {
-	display: grid;
-	gap: 1px;
-	overflow: clip;
-	border-radius: var(--radius-m);
-}
+<style lang="scss">
+// NOTE: la syntaxe "#styles/..." ne fonctionne pas avec scss...
+// NOTE: comment appliquer un layer avec scss ?
+@use "../../assets/styles/screens/signin-screen.inherit.scss" with (
+	$input-surface: v-bind(randomBgColor),
+	$input-surface-alt: v-bind(randomBgColorAlt),
+	$input-on-surface: v-bind(randomColor)
+);
 </style>
 
-<style>
-@import "../../assets/styles/components/form.css";
-
-.auth-container {
-	--input-surface: v-bind(randomBgColor);
-	--input-surface-alt: v-bind(randomBgColorAlt);
-	--input-on-surface: v-bind(randomColor);
-	align-items: center;
-}
-
-.bg-gradient-l {
-	background: linear-gradient(
-		to left,
-		var(--input-surface) 70%,
-		var(--input-surface-alt)
-	);
-}
-.bg-gradient-r {
-	background: linear-gradient(
-		to right,
-		var(--input-surface),
-		var(--input-surface-alt)
-	);
-}
+<style scoped lang="scss">
+// NOTE: la syntaxe "#styles/..." ne fonctionne pas avec scss...
+// NOTE: comment appliquer un layer avec scss ?
+@use "../../assets/styles/screens/signin-screen.scss" with (
+	$auth-title-small-surface: v-bind(randomBgColor),
+	$auth-title-small-on-surface: v-bind(randomColor)
+);
 </style>

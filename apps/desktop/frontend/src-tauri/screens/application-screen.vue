@@ -1,36 +1,25 @@
 <script setup lang="ts">
-import { invoke } from "@tauri-apps/api/core";
+import { invoke, type InvokeArgs } from "@tauri-apps/api/core";
+import { onMounted, ref } from "vue";
 
-import type { Screen } from "#screens";
-import ApplicationScreen, {
-	type AmpStatus,
-} from "#screens/application-screen.vue";
+import { emitChangeScreen, type ScreenEmits } from "#screens";
+import ApplicationScreen from "#screens/application-screen.vue";
 
-interface Emits {
-	// biome-ignore lint/style/useShorthandFunctionType: .-)
-	(event_name: "change-screen", s: Screen): void;
-}
+interface Emits extends ScreenEmits {}
 
 defineEmits<Emits>();
 
-function checkAmpServiceStatus(): Promise<AmpStatus> {
-	return invoke<AmpStatus>("check_amp_service_status");
-}
+let services = ref([]);
 
-function startAmpService(): Promise<AmpStatus> {
-	return invoke<AmpStatus>("start_amp_service");
-}
-
-function stopAmpService(): Promise<AmpStatus> {
-	return invoke<AmpStatus>("stop_amp_service");
-}
+onMounted(async () => {
+	services.value = await invoke("all_services");
+});
 </script>
 
 <template>
 	<ApplicationScreen
-		@check-amp-service-status="checkAmpServiceStatus"
-		@start-amp-service="startAmpService"
-		@stop-amp-service="stopAmpService"
-		@change-screen="(s) => $emit('change-screen', s)"
+		v-model="services"
+		@call-backend="invoke"
+		@change-screen="(s) => emitChangeScreen($emit)(s)"
 	/>
 </template>
