@@ -1,0 +1,15 @@
+.idea/
+logs/
+node_modules/
+target/
+dist/
+dist-ssr/
+
+.DS_Store
+.env
+.env.production
+*.local
+*.log
+
+pnpm-lock.yaml
+Cargo.lock

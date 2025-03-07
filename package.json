@@ -1,0 +1,9 @@
+{
+	"name": "alephonor",
+	"version": "0.1.0",
+	"description": "Alephonor",
+	"devDependencies": {
+		"@biomejs/biome": "catalog:"
+	},
+	"scripts": {}
+}
