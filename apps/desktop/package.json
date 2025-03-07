@@ -1,0 +1,31 @@
+{
+	"name": "@alephonor/desktop-app",
+	"private": true,
+	"version": "0.1.0",
+	"type": "module",
+	"imports": {
+		"#components/*": "./frontend/src/components/*",
+		"#screens": "./frontend/src/screens/index.ts",
+		"#screens/*": "./frontend/src/screens/*"
+	},
+	"scripts": {
+		"dev": "vite",
+		"build": "vue-tsc --noEmit && vite build",
+		"preview": "vite preview",
+		"tauri": "tauri"
+	},
+	"dependencies": {
+		"@alephonor/sheets": "workspace:",
+		"@tauri-apps/api": "^2",
+		"@tauri-apps/plugin-opener": "^2",
+		"vue": "^3.5.13"
+	},
+	"devDependencies": {
+		"@tauri-apps/cli": "^2",
+		"@vitejs/plugin-vue": "^5.2.1",
+		"sass-embedded": "catalog:",
+		"typescript": "catalog:",
+		"vite": "catalog:",
+		"vue-tsc": "^2.1.10"
+	}
+}

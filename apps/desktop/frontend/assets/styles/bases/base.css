@@ -1,0 +1,43 @@
+@import "@alephonor/sheets/bases/element.css";
+
+* {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+	cursor: default;
+}
+
+*:focus {
+	outline: 3px solid currentColor !important;
+}
+
+body {
+	background: var(--body-surface);
+	color: var(--body-on-surface);
+	overflow: hidden;
+}
+
+h1,
+.h1-like,
+h2,
+.h2-like,
+h3,
+.h3-like,
+h4,
+.h4-like,
+h5,
+.h5-like,
+h6,
+.h6-like {
+	color: var(--heading-on-surface);
+}
+
+a {
+	color: var(--link-on-surface);
+
+	&:focus,
+	&:hover,
+	&:active {
+		color: var(--link-hover-on-surface);
+	}
+}

@@ -11,5 +11,8 @@
 		"titleBar.inactiveForeground": "#ffffff",
 		"statusBar.background": "#e9732a",
 		"statusBar.foreground": "#ffffff",
-    }
+	},
+	"cSpell.words": [
+		"alephonor"
+	]
 }

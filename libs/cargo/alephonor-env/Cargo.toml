@@ -1,0 +1,13 @@
+[package]
+name = "alephonor-env"
+version = { workspace = true }
+edition = { workspace = true }
+description = "Récupère tes variables d'environnement simplement."
+
+[lints]
+workspace = true
+
+[dependencies]
+serde = { workspace = true }
+serde-env = { version = "0.2.0" }
+thiserror = { workspace = true }
