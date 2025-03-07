@@ -29,11 +29,16 @@ $auth-title-small-on-surface: transparent !default;
 		max-width: 150px;
 		max-height: 150px;
 		margin-inline: auto;
-		& img {
-			display: inline-block;
-			width: 100%;
-			max-height: inherit;
-			border-radius: var(--radius-full);
+	}
+
+	.auth-avatar img {
+		display: inline-block;
+		width: 100%;
+		max-height: inherit;
+		border-radius: var(--radius-full);
+		transition: box-shadow 250ms ease-in-out;
+		&:hover {
+			box-shadow: 0px 0px 12px 2px $auth-title-small-surface;
 		}
 	}
 

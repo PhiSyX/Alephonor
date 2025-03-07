@@ -5,6 +5,7 @@ import { computed, onMounted, shallowRef } from "vue";
 export interface Service {
 	name: string;
 	title: string;
+	image?: string;
 	commands: ServiceCommands;
 }
 
@@ -59,6 +60,8 @@ onMounted(async () => {
 			'is-loading': isLoading,
 		}"
 	>
+		<img v-if="service.image" :src="service.image" alt="" />
+
 		<h1>
 			{{ service.title }}
 			<span class="dot"></span>

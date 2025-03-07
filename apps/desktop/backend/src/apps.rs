@@ -5,6 +5,8 @@ pub struct Service
 {
 	name: String,
 	title: String,
+	#[serde(skip_serializing_if = "Option::is_none")]
+	image: Option<String>,
 	commands: ServiceCommands,
 }
 
