@@ -1,11 +1,14 @@
+use tauri::State;
+
 #[derive(serde::Deserialize)]
-struct AccountInfoEnv
+pub struct AccountInfoEnv
 {
 	user_account_avatar: String,
 	user_account_name: String,
 	user_account_fullname: String,
 	user_account_email: String,
 	user_account_color: String,
+	user_account_pass: String,
 }
 
 #[derive(serde::Serialize)]
@@ -18,24 +21,29 @@ pub struct AccountInfo
 	preferred_color: String,
 }
 
-#[tauri::command]
-pub fn account_info() -> AccountInfo
+pub fn get_env_account_info() -> AccountInfoEnv
 {
-	// TODO: remplacer par les vraies informations de l'OS
-	let env: AccountInfoEnv = alephonor_env::from_file(".env.local")
+	return alephonor_env::from_file(".env.local")
 		.expect("You need to have a .env.local file to the backend directory");
+}
 
+#[tauri::command]
+pub fn account_info(env: State<'_, AccountInfoEnv>) -> AccountInfo
+{
 	AccountInfo {
-		avatar: env.user_account_avatar,
-		email: env.user_account_email,
-		fullname: env.user_account_fullname,
-		name: env.user_account_name,
-		preferred_color: env.user_account_color,
+		avatar: env.user_account_avatar.clone(),
+		email: env.user_account_email.clone(),
+		fullname: env.user_account_fullname.clone(),
+		name: env.user_account_name.clone(),
+		preferred_color: env.user_account_color.clone(),
 	}
 }
 
 #[tauri::command]
-pub fn post_account_form(raw_password: &str) -> bool
+pub fn post_account_form(
+	raw_password: &str,
+	env: State<'_, AccountInfoEnv>,
+) -> bool
 {
-	raw_password == "azerty"
+	env.user_account_pass.eq(raw_password)
 }
