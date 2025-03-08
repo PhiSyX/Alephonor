@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ThemeIcon from "../icons/theme-icon.vue";
+import IconTheme from "../icons/icon-theme.vue";
 
 interface Emits {
 	// biome-ignore lint/style/useShorthandFunctionType: ;-)
@@ -10,15 +10,19 @@ const emit = defineEmits<Emits>();
 </script>
 
 <template>
-	<nav role="application" class="app:controls">
-		<button
-			hidden
-			type="button"
-			title="Changer le thème de l'application"
-			@click="emit('toggle-theme')"
-		>
-			<ThemeIcon />
-		</button>
+	<nav class="app:controls">
+		<ul>
+			<li>
+				<button
+					hidden
+					type="button"
+					title="Changer le thème de l'application"
+					@click="emit('toggle-theme')"
+				>
+					<IconTheme />
+				</button>
+			</li>
+		</ul>
 	</nav>
 </template>
 

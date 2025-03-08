@@ -1,7 +1,9 @@
 import { createApp } from "vue";
 
-import App from "./src-tauri/app.vue";
-
-let app = createApp(App);
+let app = createApp(
+	typeof window.__TAURI_INTERNALS__ !== "undefined"
+		? (await import("./src-tauri/app.vue")).default
+		: (await import("./src-web/app.vue")).default,
+);
 
 app.mount("#app");

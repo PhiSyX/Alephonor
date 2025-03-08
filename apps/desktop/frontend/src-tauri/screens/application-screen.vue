@@ -4,14 +4,15 @@ import { invoke, type InvokeArgs } from "@tauri-apps/api/core";
 // import { appDataDir, resolve } from "@tauri-apps/api/path";
 import { onMounted, ref } from "vue";
 
-import { emitChangeScreen, type ScreenEmits } from "#screens";
-import ApplicationScreen from "#screens/application-screen.vue";
+import type { Service } from "@alephonor/domain/entities/service";
+import { emitChangeScreen, type ScreenEmits } from "@alephonor/system-design/screens";
+import ApplicationScreen from "@alephonor/system-design/screens/application-screen.vue";
 
 interface Emits extends ScreenEmits {}
 
 defineEmits<Emits>();
 
-let services = ref([]);
+let services = ref<Array<Service>>([]);
 
 onMounted(async () => {
 	services.value = await invoke("all_services");

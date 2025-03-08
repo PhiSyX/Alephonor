@@ -1,21 +1,9 @@
 <script setup lang="ts">
-import IconLoader from "#components/icons/icon-loader.vue";
 import { computed, onMounted, shallowRef } from "vue";
 
-export interface Service {
-	name: string;
-	title: string;
-	image?: string;
-	installed: boolean;
-	commands: ServiceCommands;
-}
+import type { Service } from "@alephonor/domain/entities/service";
 
-export interface ServiceCommands {
-	install: string;
-	check: string;
-	start: string;
-	stop: string;
-}
+import IconLoader from "../icons/icon-loader.vue";
 
 export interface Props {
 	service: Service;
@@ -27,6 +15,7 @@ const { service, onCallBackend } = defineProps<Props>();
 const status = shallowRef(false);
 const isLoading = shallowRef(false);
 
+const isInstalled = computed(() => service.installed);
 const isRunning = computed(() => status.value === true);
 const isNotRunning = computed(() => status.value === false);
 
@@ -62,6 +51,17 @@ async function stopService() {
 		isLoading.value = false;
 	}
 }
+async function installService() {
+	isLoading.value = true;
+
+	// Maybe the command doesn't exist
+	try {
+		await onCallBackend(service.commands.install);
+		status.value = await onCallBackend(service.commands.check);
+	} finally {
+		isLoading.value = false;
+	}
+}
 
 onMounted(() => checkService());
 </script>
@@ -82,16 +82,23 @@ onMounted(() => checkService());
 			<span class="dot"></span>
 		</h1>
 
-		<button v-if="isNotRunning" :disabled="isLoading" @click="startService">
-			Démarrer <IconLoader v-if="isLoading" />
-		</button>
+		<template v-if="isInstalled">
+			<button v-if="isNotRunning" :disabled="isLoading" @click="startService">
+				Démarrer <IconLoader v-if="isLoading" />
+			</button>
 
-		<button v-if="isRunning" :disabled="isLoading" @click="stopService">
-			Stopper <IconLoader v-if="isLoading" />
-		</button>
+			<button v-if="isRunning" :disabled="isLoading" @click="stopService">
+				Stopper <IconLoader v-if="isLoading" />
+			</button>
+		</template>
+		<template v-else>
+			<button :disabled="isLoading" @click="installService">
+				Installer <IconLoader v-if="isLoading" />
+			</button>
+		</template>
 	</article>
 </template>
 
 <style scoped>
-@import "#styles/services/application-service.css" layer(components);
+@import "./application-service.css" layer(components);
 </style>

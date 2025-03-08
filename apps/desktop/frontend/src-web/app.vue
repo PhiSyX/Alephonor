@@ -2,8 +2,6 @@
 import { defineAsyncComponent, shallowRef } from "vue";
 import { Screen } from "@alephonor/domain/screens/enum";
 
-import AppWinHeaderArea from "./components/appwin-header-area.vue";
-
 defineOptions({
 	components: {
 		[Screen.Applications]: defineAsyncComponent(
@@ -27,10 +25,6 @@ if (import.meta.env.PROD) {
 </script>
 
 <template>
-	<Suspense>
-		<AppWinHeaderArea class="l-app-win-header" data-tauri-drag-region />
-	</Suspense>
-
 	<main role="main">
 		<component :is="currentScreen" @change-screen="changeScreen" />
 	</main>

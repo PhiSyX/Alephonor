@@ -1,12 +1,8 @@
-export enum Screen {
-	Applications = "Applications",
-	SignIn = "SignIn",
-}
+import type { Screen } from "@alephonor/domain/screens/enum";
 
 export interface ScreenEmits {
 	// biome-ignore lint/style/useShorthandFunctionType: .-)
-	(event_name: "change-screen", s: Screen): void;
+	(evtName: "change-screen", s: Screen): void;
 }
-
 export const emitChangeScreen = ($emit: ScreenEmits) => (screen: Screen) =>
 	$emit("change-screen", screen);

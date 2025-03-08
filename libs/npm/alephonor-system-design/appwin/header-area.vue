@@ -16,6 +16,7 @@ const emit = defineEmits<Emits>();
 <template>
 	<header role="application, window" class="app:win:header">
 		<AppControls @toggle-theme="emit('toggle-theme')" />
+
 		<WinControls
 			@close="emit('close')"
 			@maximize="emit('maximize')"
@@ -30,5 +31,10 @@ const emit = defineEmits<Emits>();
 	justify-content: end;
 	gap: var(--spacing-4);
 	padding: var(--spacing-1);
+
+	& > nav ul {
+		display: grid;
+		grid-template-columns: repeat(3, auto);
+	}
 }
 </style>

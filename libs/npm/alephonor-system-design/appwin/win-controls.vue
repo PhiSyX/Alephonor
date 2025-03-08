@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import CloseIcon from "../icons/close-icon.vue";
-import MaximizeIcon from "../icons/maximize-icon.vue";
-import MinimizeIcon from "../icons/minimize-icon.vue";
+import IconClose from "../icons/icon-close.vue";
+import IconMaximize from "../icons/icon-maximize.vue";
+import IconMinimize from "../icons/icon-minimize.vue";
 
 interface Emits {
 	(evtName: "close"): void;
@@ -13,31 +13,39 @@ const emit = defineEmits<Emits>();
 </script>
 
 <template>
-	<nav role="window" class="win:controls">
-		<button
-			type="button"
-			title="Réduire l'application"
-			@click="emit('minimize')"
-		>
-			<MinimizeIcon />
-		</button>
+	<nav class="win:controls">
+		<ul>
+			<li>
+				<button
+					type="button"
+					title="Réduire l'application"
+					@click="emit('minimize')"
+				>
+					<IconMinimize />
+				</button>
+			</li>
 
-		<button
-			type="button"
-			title="Maximiser/réduire l'application"
-			@click="emit('maximize')"
-		>
-			<MaximizeIcon />
-		</button>
+			<li>
+				<button
+					type="button"
+					title="Maximiser/réduire l'application"
+					@click="emit('maximize')"
+				>
+					<IconMaximize />
+				</button>
+			</li>
 
-		<button
-			type="button"
-			title="Quitter l'application"
-			class="win:close-control"
-			@click="emit('close')"
-		>
-			<CloseIcon />
-		</button>
+			<li>
+				<button
+					type="button"
+					title="Quitter l'application"
+					class="win:close-control"
+					@click="emit('close')"
+				>
+					<IconClose />
+				</button>
+			</li>
+		</ul>
 	</nav>
 </template>
 

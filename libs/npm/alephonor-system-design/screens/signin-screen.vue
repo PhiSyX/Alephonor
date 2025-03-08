@@ -1,25 +1,19 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-import Input from "#components/input.vue";
-import { Screen } from "#screens";
+import type { AccountInfo } from "@alephonor/domain/entities/account";
+import type { ScreenEmits } from "./index";
 
-export interface AccountInfo {
-	avatar: string;
-	name: string;
-	fullname: string;
-	preferred_color: string;
-}
+import { Screen } from "@alephonor/domain/screens/enum";
+
+import Input from "../components/input.vue";
 
 interface Props {
 	accountInfo: Partial<AccountInfo>;
 	onSubmit(rawPassword: string): Promise<boolean>;
 }
 
-interface Emits {
-	// biome-ignore lint/style/useShorthandFunctionType: ;-)
-	(event_name: "change-screen", s: Screen): void;
-}
+interface Emits extends ScreenEmits {}
 
 const { accountInfo, onSubmit } = defineProps<Props>();
 const emits = defineEmits<Emits>();
@@ -97,7 +91,7 @@ async function post_account_form() {
 
 	passwordModel.value = "";
 
-	if (success) {
+	if (success && screen) {
 		emits("change-screen", Screen.Applications);
 	}
 
@@ -163,13 +157,13 @@ async function post_account_form() {
 </template>
 
 <style>
-@import "../../assets/styles/screens/signin-screen.vars.css";
+@import "./signin-screen.vars.css";
 </style>
 
 <style lang="scss">
 // NOTE: la syntaxe "#styles/..." ne fonctionne pas avec scss...
 // NOTE: comment appliquer un layer avec scss ?
-@use "../../assets/styles/screens/signin-screen.inherit.scss" with (
+@use "./signin-screen.inherit.scss" with (
 	$input-surface: v-bind(randomBgColor),
 	$input-surface-alt: v-bind(randomBgColorAlt),
 	$input-on-surface: v-bind(randomColor)
@@ -179,7 +173,7 @@ async function post_account_form() {
 <style scoped lang="scss">
 // NOTE: la syntaxe "#styles/..." ne fonctionne pas avec scss...
 // NOTE: comment appliquer un layer avec scss ?
-@use "../../assets/styles/screens/signin-screen.scss" with (
+@use "./signin-screen.scss" with (
 	$auth-title-small-surface: v-bind(randomBgColor),
 	$auth-title-small-on-surface: v-bind(randomColor)
 );

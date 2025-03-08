@@ -55,6 +55,11 @@ $auth-title-small-on-surface: transparent !default;
 		gap: var(--spacing-2);
 	}
 
+	label[for],
+	button[type="submit"] {
+		flex-shrink: 0 !important;
+	}
+
 	.auth-input-error {
 		animation: 250ms shake-anim alternate;
 	}

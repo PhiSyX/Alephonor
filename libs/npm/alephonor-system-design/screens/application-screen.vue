@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import type { ScreenEmits } from "#screens";
+import type { Service } from "@alephonor/domain/entities/service";
+import type { ScreenEmits } from "./index";
 
-import ApplicationService, {
-	type Service,
-} from "../services/application-service.vue";
+import ApplicationService from "../services/application-service.vue";
 
 interface Props {
 	onCallBackend<T>(pathname: string, data?: object): Promise<T>;
@@ -30,5 +29,5 @@ let servicesModel = defineModel<DefaultModel>();
 </template>
 
 <style scoped>
-@import "#styles/screens/application-screen.css" layer(screens);
+@import "./application-screen.css" layer(screens);
 </style>
