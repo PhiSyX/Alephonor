@@ -144,7 +144,6 @@ async function post_account_form() {
 					class="bg-gradient-l"
 					aria-label="Mot de passe"
 					placeholder="Entre le mot de passe de ton compte local"
-					required
 					type="password"
 				>
 					<button

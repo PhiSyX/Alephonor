@@ -19,8 +19,11 @@ serde = { workspace = true }
 serde_json = { workspace = true }
 tokio = { workspace = true }
 
-tauri = { version = "^2.3.0", features = ["tray-icon"] }
+tauri = { version = "^2.3.0", features = ["macos-private-api", "tray-icon"] }
 tauri-plugin-fs = "^2.2.0"
 tauri-plugin-opener = "^2.2.5"
 tauri-plugin-os = "^2.2.0"
 tauri-plugin-shell = "^2.2.0"
+
+[target."cfg(target_os = \"macos\")".dependencies]
+cocoa = "^0.26"

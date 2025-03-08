@@ -25,10 +25,17 @@ pub struct ServiceCommands
 #[tauri::command]
 pub async fn all_services(app_handle: tauri::AppHandle) -> Vec<Service>
 {
-	let Ok(services_file) = app_handle
-		.path()
-		.resolve("services.json", BaseDirectory::AppData)
-	else {
+	let maybe_services_file = if cfg!(debug_assertions) {
+		Ok(std::path::PathBuf::new()
+			.join("testdata")
+			.join("services.json"))
+	} else {
+		app_handle
+			.path()
+			.resolve("services.json", BaseDirectory::AppData)
+	};
+
+	let Ok(services_file) = maybe_services_file else {
 		return vec![];
 	};
 

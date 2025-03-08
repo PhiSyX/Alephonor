@@ -1,0 +1,10 @@
+{
+	"name": "@alephonor/system-design",
+	"description": "Design system du projet Alephonor",
+	"authors": "Mike 'PhiSyX' S.",
+	"version": "0.1.0",
+	"type": "module",
+	"dependencies": {
+		"vue": "catalog:"
+	}
+}

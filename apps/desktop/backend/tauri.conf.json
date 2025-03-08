@@ -11,6 +11,7 @@
 		"frontendDist": "../dist"
 	},
 	"app": {
+		"macOSPrivateApi": true,
 		"windows": [
 			{
 				"title": "Alephonor",
@@ -18,7 +19,8 @@
 				"minHeight": 600,
 				"devtools": true,
 				"contentProtected": true,
-				"hiddenTitle": true
+				"decorations": false,
+				"transparent": true
 			}
 		],
 		"security": {

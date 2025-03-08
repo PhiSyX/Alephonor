@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { defineAsyncComponent, shallowRef } from "vue";
 
-import { Screen } from "../src/screens";
+import AppWinHeaderArea from "./components/appwin-header-area.vue";
+
+import { Screen } from "#screens";
 
 defineOptions({
 	components: {
@@ -26,6 +28,10 @@ if (import.meta.env.PROD) {
 </script>
 
 <template>
+	<Suspense>
+		<AppWinHeaderArea class="l-app-win-header" data-tauri-drag-region />
+	</Suspense>
+
 	<main role="main">
 		<component :is="currentScreen" @change-screen="changeScreen" />
 	</main>

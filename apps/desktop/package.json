@@ -16,13 +16,14 @@
 		"tauri": "tauri"
 	},
 	"dependencies": {
+		"@alephonor/system-design": "workspace:",
 		"@alephonor/sheets": "workspace:",
 		"@tauri-apps/api": "^2.3.0",
 		"@tauri-apps/plugin-fs": "^2.2.0",
 		"@tauri-apps/plugin-opener": "^2.2.0",
 		"@tauri-apps/plugin-os": "^2.2.0",
 		"@tauri-apps/plugin-shell": "^2.2.0",
-		"vue": "^3.5.13"
+		"vue": "catalog:"
 	},
 	"devDependencies": {
 		"@tauri-apps/cli": "^2",
@@ -30,6 +31,6 @@
 		"sass-embedded": "catalog:",
 		"typescript": "catalog:",
 		"vite": "catalog:",
-		"vue-tsc": "^2.1.10"
+		"vue-tsc": "catalog:"
 	}
 }

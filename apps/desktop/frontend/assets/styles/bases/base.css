@@ -11,6 +11,11 @@
 	outline: 3px solid currentColor !important;
 }
 
+html,
+body {
+	border-radius: var(--radius-m);
+}
+
 body {
 	background: var(--body-surface);
 	color: var(--body-on-surface);
