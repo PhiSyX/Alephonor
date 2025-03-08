@@ -1,4 +1,6 @@
-use tokio::fs::File;
+use tauri::Manager;
+use tauri::path::BaseDirectory;
+use tauri_plugin_fs::FsExt;
 
 #[derive(serde::Serialize, serde::Deserialize)]
 pub struct Service
@@ -7,25 +9,34 @@ pub struct Service
 	title: String,
 	#[serde(skip_serializing_if = "Option::is_none")]
 	image: Option<String>,
+	installed: bool,
 	commands: ServiceCommands,
 }
 
 #[derive(serde::Serialize, serde::Deserialize)]
 pub struct ServiceCommands
 {
+	install: String,
 	check: String,
 	start: String,
 	stop: String,
 }
 
 #[tauri::command]
-pub async fn all_services() -> Vec<Service>
+pub async fn all_services(app_handle: tauri::AppHandle) -> Vec<Service>
 {
-	let Ok(fd) = File::open("./testdata/services.json").await else {
+	let Ok(services_file) = app_handle
+		.path()
+		.resolve("services.json", BaseDirectory::AppData)
+	else {
 		return vec![];
 	};
 
-	let Ok(services) = serde_json::from_reader(fd.into_std().await) else {
+	let Ok(fd) = app_handle.fs().read(services_file) else {
+		return vec![];
+	};
+
+	let Ok(services) = serde_json::from_slice(&fd) else {
 		return vec![];
 	};
 

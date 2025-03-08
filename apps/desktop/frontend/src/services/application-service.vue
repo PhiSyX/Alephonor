@@ -6,10 +6,12 @@ export interface Service {
 	name: string;
 	title: string;
 	image?: string;
+	installed: boolean;
 	commands: ServiceCommands;
 }
 
 export interface ServiceCommands {
+	install: string;
 	check: string;
 	start: string;
 	stop: string;
@@ -30,25 +32,38 @@ const isNotRunning = computed(() => status.value === false);
 
 async function checkService() {
 	isLoading.value = true;
-	status.value = await onCallBackend(service.commands.check);
-	isLoading.value = false;
+
+	// Maybe the command doesn't exist
+	try {
+		status.value = await onCallBackend(service.commands.check);
+	} finally {
+		isLoading.value = false;
+	}
 }
 async function startService() {
 	isLoading.value = true;
-	await onCallBackend(service.commands.start);
-	status.value = await onCallBackend(service.commands.check);
-	isLoading.value = false;
+
+	// Maybe the command doesn't exist
+	try {
+		await onCallBackend(service.commands.start);
+		status.value = await onCallBackend(service.commands.check);
+	} finally {
+		isLoading.value = false;
+	}
 }
 async function stopService() {
 	isLoading.value = true;
-	await onCallBackend(service.commands.stop);
-	status.value = await onCallBackend(service.commands.check);
-	isLoading.value = false;
+
+	// Maybe the command doesn't exist
+	try {
+		await onCallBackend(service.commands.stop);
+		status.value = await onCallBackend(service.commands.check);
+	} finally {
+		isLoading.value = false;
+	}
 }
 
-onMounted(async () => {
-	checkService();
-});
+onMounted(() => checkService());
 </script>
 
 <template>

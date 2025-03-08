@@ -5,11 +5,6 @@ import ApplicationService, {
 	type Service,
 } from "../services/application-service.vue";
 
-export interface AmpStatus {
-	apache2: string;
-	mysql: string;
-}
-
 interface Props {
 	onCallBackend<T>(pathname: string, data?: object): Promise<T>;
 }

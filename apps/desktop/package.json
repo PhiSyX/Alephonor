@@ -17,8 +17,11 @@
 	},
 	"dependencies": {
 		"@alephonor/sheets": "workspace:",
-		"@tauri-apps/api": "^2",
-		"@tauri-apps/plugin-opener": "^2",
+		"@tauri-apps/api": "^2.3.0",
+		"@tauri-apps/plugin-fs": "^2.2.0",
+		"@tauri-apps/plugin-opener": "^2.2.0",
+		"@tauri-apps/plugin-os": "^2.2.0",
+		"@tauri-apps/plugin-shell": "^2.2.0",
 		"vue": "^3.5.13"
 	},
 	"devDependencies": {
