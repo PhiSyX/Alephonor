@@ -68,12 +68,13 @@ onMounted(() => checkService());
 
 <template>
 	<article
-		class="app"
+		:id="service.name"
 		:class="{
 			'is-not-running': isNotRunning,
 			'is-running': isRunning,
 			'is-loading': isLoading,
 		}"
+		class="app:service"
 	>
 		<img v-if="service.image" :src="service.image" alt="" />
 
@@ -83,7 +84,11 @@ onMounted(() => checkService());
 		</h1>
 
 		<template v-if="isInstalled">
-			<button v-if="isNotRunning" :disabled="isLoading" @click="startService">
+			<button
+				v-if="isNotRunning"
+				:disabled="isLoading"
+				@click="startService"
+			>
 				Démarrer <IconLoader v-if="isLoading" />
 			</button>
 

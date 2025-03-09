@@ -49,10 +49,10 @@ const emit = defineEmits<Emits>();
 	</nav>
 </template>
 
-<style scoped>
-button,
-button > svg,
-button > svg * {
+<style>
+.win\:controls button,
+.win\:controls button > svg,
+.win\:controls button > svg * {
 	opacity: 0.9;
 	cursor: pointer;
 

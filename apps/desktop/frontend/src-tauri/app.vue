@@ -28,7 +28,7 @@ if (import.meta.env.PROD) {
 
 <template>
 	<Suspense>
-		<AppWinHeaderArea class="l-app-win-header" data-tauri-drag-region />
+		<AppWinHeaderArea data-tauri-drag-region />
 	</Suspense>
 
 	<main role="main">
@@ -39,9 +39,15 @@ if (import.meta.env.PROD) {
 <style lang="scss">
 @import "../assets/styles/main.css";
 
+#app,
 main[role="main"] {
-	max-width: 75dvw;
-	margin-inline: auto;
-	margin-block: 3rem;
+	display: flex;
+	flex-direction: column;
+}
+#app {
+	height: var(--size-full);
+}
+main[role="main"] {
+	flex-grow: 1;
 }
 </style>

@@ -32,10 +32,4 @@ if (import.meta.env.PROD) {
 
 <style lang="scss">
 @import "../assets/styles/main.css";
-
-main[role="main"] {
-	max-width: 75dvw;
-	margin-inline: auto;
-	margin-block: 3rem;
-}
 </style>

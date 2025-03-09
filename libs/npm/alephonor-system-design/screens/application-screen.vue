@@ -18,15 +18,41 @@ let servicesModel = defineModel<DefaultModel>();
 </script>
 
 <template>
-	<section class="app-screen">
-		<ApplicationService
-			v-for="service of servicesModel"
-			:key="service.name"
-			:service="service"
-			@call-backend="onCallBackend"
-		/>
+	<section class="app:screen">
+		<aside>
+			<details open>
+				<summary>Mes services</summary>
+
+				<nav role="navigation">
+					<ul role="tablist">
+						<li
+							v-for="service of servicesModel"
+							:key="`${service.name}$`"
+							:aria-controls="service.name"
+						>
+							<a href="#">
+								{{ service.title }}
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</details>
+		</aside>
+
+		<div class="app:screen:services">
+			<ApplicationService
+				v-for="service of servicesModel"
+				:key="`^${service.name}`"
+				:service="service"
+				@call-backend="onCallBackend"
+			/>
+		</div>
 	</section>
 </template>
+
+<style>
+@import "./application-screen.vars.css";
+</style>
 
 <style scoped>
 @import "./application-screen.css" layer(screens);

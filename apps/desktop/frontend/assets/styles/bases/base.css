@@ -4,11 +4,14 @@
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	user-select: none;
-	cursor: default;
 }
 
 *:focus {
 	outline: 3px solid currentColor !important;
+}
+
+*:not(a,button,input,label[for]) {
+	cursor: default;
 }
 
 html,
@@ -45,4 +48,9 @@ a {
 	&:active {
 		color: var(--link-hover-on-surface);
 	}
+}
+
+label[for],
+label[for] * {
+	cursor: pointer;
 }

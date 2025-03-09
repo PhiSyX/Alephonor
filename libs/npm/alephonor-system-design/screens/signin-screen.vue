@@ -103,14 +103,14 @@ async function post_account_form() {
 </script>
 
 <template>
-	<section class="auth-signin">
-		<h1 class="auth-title">
+	<section class="app:signin auth:signin">
+		<h1 class="auth:title">
 			Bonjour
 			<small>{{ accountInfo.fullname }}</small
 			>, content de te revoir
 		</h1>
 
-		<div class="auth-avatar">
+		<div class="auth:avatar">
 			<img
 				v-if="accountInfo.avatar"
 				:src="accountInfo.avatar"
@@ -121,13 +121,13 @@ async function post_account_form() {
 		<form
 			action=""
 			method="POST"
-			class="auth-form"
+			class="auth:form"
 			@submit.prevent="post_account_form"
 		>
 			<div
-				class="input-group"
+				class="input:group"
 				:class="{
-					'auth-input-error': passwordInvalid,
+					'auth:input--error': passwordInvalid,
 				}"
 			>
 				<Input

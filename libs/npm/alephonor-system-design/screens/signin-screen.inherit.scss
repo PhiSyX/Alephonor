@@ -11,6 +11,11 @@ $input-on-surface: transparent !default;
 		align-items: center;
 	}
 
+	.auth\:form label[for],
+	.auth\:form button[type="submit"] {
+		flex-shrink: 0;
+	}
+
 	.bg-gradient-l {
 		background: linear-gradient(
 			to left,

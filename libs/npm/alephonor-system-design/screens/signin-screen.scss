@@ -2,7 +2,7 @@ $auth-title-small-surface: transparent !default;
 $auth-title-small-on-surface: transparent !default;
 
 @layer screens {
-	.auth-signin {
+	.auth\:signin {
 		max-width: 70ch;
 		margin-inline: auto;
 		padding: var(--spacing-8) var(--spacing-10);
@@ -14,7 +14,7 @@ $auth-title-small-on-surface: transparent !default;
 		}
 	}
 
-	.auth-title {
+	.auth\:title {
 		font-size: 24px;
 
 		small {
@@ -25,42 +25,38 @@ $auth-title-small-on-surface: transparent !default;
 		}
 	}
 
-	.auth-avatar {
+	.auth\:avatar {
 		max-width: 150px;
 		max-height: 150px;
 		margin-inline: auto;
 	}
 
-	.auth-avatar img {
+	.auth\:avatar img {
 		display: inline-block;
 		width: 100%;
 		max-height: inherit;
 		border-radius: var(--radius-full);
 		transition: box-shadow 250ms ease-in-out;
+
 		&:hover {
 			box-shadow: 0px 0px 12px 2px $auth-title-small-surface;
 		}
 	}
 
-	.auth-signin > p {
-		color: var(--auth-signin-signin-on-surface);
-	}
-
-	.auth-note {
-		color: var(--auth-signin-signin-note-on-surface) !important;
-	}
-
-	form {
+	.auth\:form {
 		display: grid;
 		gap: var(--spacing-2);
 	}
 
-	label[for],
-	button[type="submit"] {
-		flex-shrink: 0 !important;
+	.auth\:form button[type="submit"] {
+		width: max-content;
+		padding-block: var(--spacing-1);
+		padding-inline: var(--spacing-3);
+		border: none;
+		border-radius: var(--radius-m);
 	}
 
-	.auth-input-error {
+	.auth\:input--error {
 		animation: 250ms shake-anim alternate;
 	}
 
@@ -81,27 +77,20 @@ $auth-title-small-on-surface: transparent !default;
 		}
 	}
 
-	button[type="submit"] {
-		width: max-content;
-		padding-block: var(--spacing-1);
-		padding-inline: var(--spacing-5);
-		border: none;
-		border-radius: var(--radius-m);
-	}
-
-	hr {
+	.auth\:form > hr[text] {
 		--hr-bordered: #3747b6;
 		--hr-surface: var(--auth-signin-surface);
 		--hr-on-surface: var(--auth-signin-on-surface);
 
 		width: var(--size-full);
 	}
-	a {
+
+	.auth\:form > a {
 		color: var(--auth-signin-link);
 		text-align: center;
 	}
 
-	.input-group {
+	.input\:group {
 		display: grid;
 		gap: 1px;
 		overflow: clip;
