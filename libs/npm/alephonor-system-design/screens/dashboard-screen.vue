@@ -18,42 +18,53 @@ let servicesModel = defineModel<DefaultModel>();
 </script>
 
 <template>
-	<section class="app:screen">
+	<section class="dashboard:screen">
 		<aside>
 			<details open>
-				<summary>Mes services</summary>
+				<summary>Services</summary>
 
 				<nav role="navigation">
 					<ul role="tablist">
-						<li
+						<template
 							v-for="service of servicesModel"
 							:key="`${service.name}$`"
-							:aria-controls="service.name"
 						>
-							<a href="#">
-								{{ service.title }}
-							</a>
-						</li>
+							<li
+								v-if="service.installed"
+								:aria-controls="service.name"
+							>
+								<a href="#">
+									{{ service.title }}
+								</a>
+							</li>
+						</template>
 					</ul>
 				</nav>
 			</details>
 		</aside>
 
-		<div class="app:screen:services">
-			<ApplicationService
-				v-for="service of servicesModel"
-				:key="`^${service.name}`"
-				:service="service"
-				@call-backend="onCallBackend"
-			/>
+		<div class="dashboard:screen:environnements">
+			<h1>
+				Gérer les environnements
+				<button type="button">Ajouter un nouvel environnement</button>
+			</h1>
+
+			<div>
+				<ApplicationService
+					v-for="service of servicesModel"
+					:key="`^${service.name}`"
+					:service="service"
+					@call-backend="onCallBackend"
+				/>
+			</div>
 		</div>
 	</section>
 </template>
 
 <style>
-@import "./application-screen.vars.css";
+@import "./dashboard-screen.vars.css";
 </style>
 
 <style scoped>
-@import "./application-screen.css" layer(screens);
+@import "./dashboard-screen.css" layer(screens);
 </style>

@@ -1,0 +1,4 @@
+:root {
+	--dashboard-environnements-surface: var(--color-white);
+	--dashboard-environnements-on-surface: var(--color-black);
+}

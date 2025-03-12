@@ -1,20 +1,23 @@
 <script setup lang="ts">
 import { invoke } from "@tauri-apps/api/core";
 import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
 
 import type { AccountInfo } from "@alephonor/domain/entities/account";
-import { emitChangeScreen, type ScreenEmits } from "@alephonor/system-design/screens";
+import type { Screen } from "@alephonor/domain/screens/enum";
 import SigninScreen from "@alephonor/system-design/screens/signin-screen.vue";
 
-interface Emits extends ScreenEmits {}
-
-defineEmits<Emits>();
+const router = useRouter();
 
 let accountInfo = ref<Partial<AccountInfo>>({});
 
 onMounted(async () => {
 	accountInfo.value = await invoke<AccountInfo>("account_info");
 });
+
+function changeScreen(s: Screen) {
+	router.push({ name: s });
+}
 
 function handleSubmit(rawPassword: string): Promise<boolean> {
 	return invoke<boolean>("post_account_form", { rawPassword });
@@ -25,6 +28,6 @@ function handleSubmit(rawPassword: string): Promise<boolean> {
 	<SigninScreen
 		:account-info="accountInfo"
 		@submit="handleSubmit"
-		@change-screen="(s) => emitChangeScreen($emit)(s)"
+		@change-screen="changeScreen"
 	/>
 </template>

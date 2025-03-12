@@ -92,7 +92,7 @@ async function post_account_form() {
 	passwordModel.value = "";
 
 	if (success && screen) {
-		emits("change-screen", Screen.Applications);
+		emits("change-screen", Screen.Dashboard);
 	}
 
 	passwordInvalid.value = !success;

@@ -10,6 +10,7 @@
 	border-radius: 8px;
 	box-shadow: 1px 1px 2px var(--color-ultra-black);
 	background-size: cover;
+	color: var(--dashboard-environnements-on-surface);
 	overflow: clip;
 
 	> * + * {
@@ -35,7 +36,8 @@
 		justify-content: space-between;
 
 		margin: 0;
-		text-shadow: 2px 2px 2px var(--color-black);
+		color: var(--dashboard-environnements-on-surface);
+		text-shadow: 2px 2px 2px var(--color-grey-300);
 	}
 
 	button {
@@ -70,11 +72,18 @@
 }
 
 .is-loading {
-	--status-color: var(--color-orange-800) !important;
-}
-.is-not-running {
-	--status-color: var(--color-red-800);
+	--status-color: var(--color-orange-600) !important;
 }
 .is-running {
 	--status-color: var(--color-green-600);
+}
+
+.is-not-installed {
+	transition: opacity 250ms ease;
+}
+.is-not-installed:not(:hover) {
+	opacity: 50%;
+}
+.is-not-running {
+	--status-color: var(--color-red-500);
 }

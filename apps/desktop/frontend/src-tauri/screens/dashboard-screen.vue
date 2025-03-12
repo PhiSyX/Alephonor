@@ -5,12 +5,11 @@ import { invoke, type InvokeArgs } from "@tauri-apps/api/core";
 import { onMounted, ref } from "vue";
 
 import type { Service } from "@alephonor/domain/entities/service";
-import { emitChangeScreen, type ScreenEmits } from "@alephonor/system-design/screens";
-import ApplicationScreen from "@alephonor/system-design/screens/application-screen.vue";
+import type { Screen } from "@alephonor/domain/screens/enum";
+import DashboardScreen from "@alephonor/system-design/screens/dashboard-screen.vue";
+import { useRouter } from "vue-router";
 
-interface Emits extends ScreenEmits {}
-
-defineEmits<Emits>();
+const router = useRouter();
 
 let services = ref<Array<Service>>([]);
 
@@ -22,15 +21,19 @@ onMounted(async () => {
 	// );
 });
 
+function changeScreen(s: Screen) {
+	router.push({ name: s });
+}
+
 async function callBackend<T>(name: string, args?: InvokeArgs): Promise<T> {
 	return invoke(name, args);
 }
 </script>
 
 <template>
-	<ApplicationScreen
+	<DashboardScreen
 		v-model="services"
 		@call-backend="callBackend"
-		@change-screen="(s) => emitChangeScreen($emit)(s)"
+		@change-screen="changeScreen"
 	/>
 </template>

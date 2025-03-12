@@ -1,16 +1,13 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 
 import type { Service } from "@alephonor/domain/entities/service";
-import {
-	emitChangeScreen,
-	type ScreenEmits,
-} from "@alephonor/system-design/screens";
-import ApplicationScreen from "@alephonor/system-design/screens/application-screen.vue";
+import type { Screen } from "@alephonor/domain/screens/enum";
 
-interface Emits extends ScreenEmits {}
+import DashboardScreen from "@alephonor/system-design/screens/dashboard-screen.vue";
 
-defineEmits<Emits>();
+const router = useRouter();
 
 let services = ref<Array<Service>>([
 	{
@@ -41,6 +38,10 @@ let services = ref<Array<Service>>([
 
 function sleep(ms: number) {
 	return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function changeScreen(s: Screen) {
+	router.push({ name: s });
 }
 
 async function callBackend<T>(name: string, args?: object): Promise<T> {
@@ -88,9 +89,9 @@ async function callBackend<T>(name: string, args?: object): Promise<T> {
 </script>
 
 <template>
-	<ApplicationScreen
+	<DashboardScreen
 		v-model="services"
 		@call-backend="callBackend"
-		@change-screen="(s) => emitChangeScreen($emit)(s)"
+		@change-screen="changeScreen"
 	/>
 </template>

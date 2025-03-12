@@ -15,8 +15,7 @@
 		"windows": [
 			{
 				"title": "Alephonor",
-				"minWidth": 800,
-				"minHeight": 600,
+				"maximized": true,
 				"devtools": true,
 				"contentProtected": true,
 				"decorations": false,

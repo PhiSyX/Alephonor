@@ -1,4 +1,4 @@
 export enum Screen {
-	Applications = "Applications",
+	Dashboard = "Dashboard",
 	SignIn = "SignIn",
 }

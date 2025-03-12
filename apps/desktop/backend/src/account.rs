@@ -7,7 +7,7 @@ pub struct AccountInfoEnv
 	user_account_name: String,
 	user_account_fullname: String,
 	user_account_email: String,
-	user_account_color: String,
+	user_account_color: Option<String>,
 	user_account_pass: String,
 }
 
@@ -18,7 +18,7 @@ pub struct AccountInfo
 	email: String,
 	fullname: String,
 	name: String,
-	preferred_color: String,
+	preferred_color: Option<String>,
 }
 
 pub fn get_env_account_info() -> AccountInfoEnv

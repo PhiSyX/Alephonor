@@ -3,12 +3,20 @@ import IconClose from "../icons/icon-close.vue";
 import IconMaximize from "../icons/icon-maximize.vue";
 import IconMinimize from "../icons/icon-minimize.vue";
 
+interface Props {
+	// TODO
+	snapLayout?: boolean;
+}
+
 interface Emits {
 	(evtName: "close"): void;
 	(evtName: "maximize"): void;
 	(evtName: "minimize"): void;
 }
 
+withDefaults(defineProps<Props>(), {
+	snapLayout: false,
+});
 const emit = defineEmits<Emits>();
 </script>
 

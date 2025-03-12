@@ -16,8 +16,10 @@ const status = shallowRef(false);
 const isLoading = shallowRef(false);
 
 const isInstalled = computed(() => service.installed);
-const isRunning = computed(() => status.value === true);
-const isNotRunning = computed(() => status.value === false);
+const isRunning = computed(() => service.installed && status.value === true);
+const isNotRunning = computed(
+	() => service.installed && status.value === false
+);
 
 async function checkService() {
 	isLoading.value = true;
@@ -71,6 +73,7 @@ onMounted(() => checkService());
 		:id="service.name"
 		:class="{
 			'is-not-running': isNotRunning,
+			'is-not-installed': !isInstalled,
 			'is-running': isRunning,
 			'is-loading': isLoading,
 		}"
