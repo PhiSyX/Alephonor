@@ -1,0 +1,95 @@
+@use "sass:map";
+@use "sass:math";
+@use "sass:meta";
+
+@use "./vars" as vars;
+
+/**
+ * Retourne une couleur basé sur le nom d'une variable.
+ *
+ * ```scss
+ * p {
+ *   color: fn.color(red);                   // var(--color-red);
+ *   color: fn.color(red, 200);              // var(--color-red-200);
+ *
+ *   color: fn.color(header-text);           // var(--header-text-on-surface);
+ *   color: fn.color(text, $module: header); // var(--header-text-on-surface);
+ * }
+ * ```
+ */
+@function color($name, $variant: null, $module: null) {
+	@if map.has-key(vars.$color-palette, $name) {
+		@if $variant {
+			@return var(--color-#{$name}-#{$variant});
+		}
+		@return var(--color-#{$name});
+	}
+
+	@if $module {
+		@return var(--#{$module}-#{$name}-on-surface);
+	}
+
+	@return var(--#{$name}-on-surface);
+}
+
+/**
+ * Retourne une couleur basé sur le nom d'une variable.
+ *
+ * ```scss
+ * p {
+ *   color: fn.color(red);                   // var(--color-red);
+ *   color: fn.color(red, 200);              // var(--color-red-200);
+ *
+ *   color: fn.color(header-text);           // var(--header-text-on-surface);
+ *   color: fn.color($module: header, text); // var(--header-text-on-surface);
+ * }
+ * ```
+ */
+@function bg($name, $variant: null, $module: null) {
+	@if map.has-key(vars.$color-palette, $name) {
+		@if $variant {
+			@return var(--color-#{$name}-#{$variant});
+		}
+		@return var(--color-#{$name});
+	}
+
+	@if $module {
+		@return var(--#{$module}-#{$name}-surface);
+	}
+
+	@return var(--#{$name}-surface);
+}
+
+@function radius($variant, $module: null) {
+	@if $module {
+		@return var(--#{$module}-radius-#{$variant});
+	}
+
+	@return var(--radius-#{$variant});
+}
+
+@function space($variant, $module: null) {
+	@if (meta.type-of($variant) == "number") {
+		@if ($variant < 10) {
+			@return var(--spacing-#{$variant});
+		}
+
+		// Multiple de 8
+		$div: math.round(math.div($variant, 8));
+		@return calc(var(--space-sm) * $div);
+	}
+
+	@if $module {
+		@return var(--#{$module}-space-#{$variant});
+	}
+
+	@return var(--space-#{$variant});
+}
+
+@function text($variant, $module: null) {
+	@if $module {
+		@return var(--#{$module}-text-#{$variant});
+	}
+
+	@return var(--text-#{$variant});
+}

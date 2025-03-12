@@ -1,4 +1,7 @@
-@import "@alephonor/sheets/bases/element.css";
+@use "@alephonor/sheets/abstracts/functions" as fn;
+@use "@alephonor/sheets/abstracts/mixins" as mx;
+
+@use "@alephonor/sheets/bases/element";
 
 * {
 	-webkit-user-select: none;
@@ -16,12 +19,12 @@
 
 html,
 body {
-	border-radius: var(--radius-m);
+	border-radius: fn.radius(md);
 }
 
 body {
-	background: var(--body-surface);
-	color: var(--body-on-surface);
+	@include mx.bgcolor(body);
+
 	overflow: hidden;
 }
 
@@ -37,16 +40,16 @@ h5,
 .h5-like,
 h6,
 .h6-like {
-	color: var(--heading-on-surface);
+	color: fn.color(heading);
 }
 
 a {
-	color: var(--link-on-surface);
+	color: fn.color(link);
 
 	&:focus,
 	&:hover,
 	&:active {
-		color: var(--link-hover-on-surface);
+		color: fn.color(link-hover);
 	}
 }
 

@@ -1,0 +1,134 @@
+@use "@alephonor/sheets/abstracts/functions" as fn;
+@use "@alephonor/sheets/abstracts/mixins" as mx;
+
+.dashboard\:screen {
+	display: flex;
+	height: 100%;
+}
+
+.dashboard\:screen > aside {
+	flex-shrink: 0;
+
+	display: grid;
+	align-content: baseline;
+	gap: fn.space(md);
+	padding: fn.space(sm);
+	width: fn.space(260);
+	height: -webkit-fill-available;
+	overflow: auto;
+}
+
+.dashboard\:screen details summary {
+	position: sticky;
+	top: calc(0px - fn.space(sm));
+	overflow: hidden;
+	padding-block: fn.space(sm);
+	font-weight: bold;
+	background: fn.color(black);
+}
+
+.dashboard\:screen details summary::marker,
+.dashboard\:screen details summary::-webkit-details-marker {
+	display: none;
+}
+
+.dashboard\:screen nav[role="navigation"] {
+	overflow: auto;
+}
+
+.dashboard\:screen nav[role="navigation"] ul[role="tablist"] {
+	display: grid;
+	gap: fn.space(sm);
+	padding-inline: fn.space(sm);
+	overflow: auto;
+}
+
+.dashboard\:screen nav[role="navigation"] ul[role="tablist"] > li {
+	display: flex;
+	gap: fn.space(sm);
+	padding: 0.25rem;
+	border-radius: fn.radius(sm);
+
+	& > img {
+		@include mx.size(24);
+	}
+
+	& > a {
+		flex-grow: 1;
+		/* fixme */
+		color: fn.color(white);
+		text-decoration: none;
+	}
+
+	&:hover {
+		/* fixme */
+		background: fn.bg(white);
+		/* fixme */
+		color: fn.color(black);
+
+		a {
+			/* fixme */
+			color: fn.color(black);
+		}
+
+		.badge {
+			/* fixme */
+			background: fn.bg(black);
+			/* fixme */
+			color: fn.color(white);
+		}
+	}
+}
+
+.dashboard\:screen .dashboard\:screen\:environnements {
+	flex-grow: 1;
+
+	padding: fn.space(md);
+
+	@include mx.radius-left(sm);
+	@include mx.bgcolor(dashboard-environnements);
+
+	h1 {
+		padding-block: fn.space(md);
+		/* fixme */
+		border-bottom: 1px solid fn.color(grey, 300);
+		color: fn.color(dashboard-environnements);
+	}
+
+	h1 button {
+		font-family: "Cambay Devanagari MT", sans-serif;
+		padding-inline: fn.space(md);
+		border-radius: fn.radius(sm);
+		/* fixme */
+		background: fn.bg(blue, 300);
+		/* fixme */
+		color: fn.color(white);
+		/* fixme */
+		box-shadow: 2px 2px 2px fn.color(blue-grey, 400);
+		cursor: pointer;
+		float: right;
+
+		&:active {
+			/* fixme */
+			background: fn.bg(blue, 400);
+		}
+	}
+
+	> div {
+		display: flex;
+		flex-wrap: wrap;
+		align-content: baseline;
+		gap: fn.space(md);
+	}
+
+	> div > * {
+		flex-shrink: 0;
+	}
+}
+
+.badge {
+	padding: 2px 6px;
+	border-radius: fn.radius(full);
+	/* fixme */
+	background: fn.bg(blue-grey, 900);
+}

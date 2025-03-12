@@ -1,0 +1,7 @@
+@use "@alephonor/sheets/abstracts/functions" as fn;
+
+$body-surface: fn.color(black);
+$body-on-surface: fn.color(white);
+$heading-on-surface: fn.color(white);
+$link-on-surface: fn.color(blue, 300);
+$link-hover-on-surface: fn.color(black);

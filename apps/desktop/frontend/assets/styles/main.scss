@@ -1,0 +1,12 @@
+/* Global CSS */
+
+/** Variables root */
+@use "./bases/root";
+
+/** Reset CSS */
+@use "@alephonor/sheets/bases/reset";
+
+/** Bases */
+@use "./bases/base";
+
+@layer reset, bases, components, screens;

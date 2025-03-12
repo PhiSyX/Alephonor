@@ -1,8 +1,0 @@
-/* Global CSS */
-
-@import "./abstracts/vars.css";
-
-@import "@alephonor/sheets/bases/reset.css" layer(bases);
-@import "./bases/base.css" layer(bases);
-
-@layer bases, components, screens;

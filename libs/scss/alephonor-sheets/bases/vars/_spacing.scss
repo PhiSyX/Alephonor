@@ -1,0 +1,14 @@
+/* Primitives */
+:root {
+	@for $i from 1 through 10 {
+		--spacing-#{$i}: #{calc(0.5rem * $i)};
+	}
+}
+
+/* Tokens */
+:root {
+	--space-sm: var(--spacing-1);
+	--space-md: var(--spacing-2);
+	--space-lg: var(--spacing-3);
+	--space-xl: var(--spacing-4);
+}

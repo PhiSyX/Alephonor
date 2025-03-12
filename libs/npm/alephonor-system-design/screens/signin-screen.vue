@@ -157,7 +157,7 @@ async function post_account_form() {
 </template>
 
 <style>
-@import "./signin-screen.vars.css";
+@import "./signin-screen.root.css";
 </style>
 
 <style lang="scss">

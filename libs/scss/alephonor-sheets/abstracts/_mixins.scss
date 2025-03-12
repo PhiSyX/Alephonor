@@ -1,0 +1,37 @@
+@use "sass:map";
+@use "sass:math";
+@use "sass:meta";
+
+@use "./functions" as fn;
+@use "./vars" as vars;
+
+/**
+ * Mixin incluant les propriétés background & color.
+ *
+ * ```scss
+ * p {
+ *   @include mx.bgcolor(input);
+ *   ====
+ *   background: var(--input-surface);
+ *   color: var(--input-on-surface);
+ * }
+ * ```
+ */
+@mixin bgcolor($name, $variant: null, $module: null) {
+	background: fn.bg($name, $variant, $module);
+	color: fn.color($name, $variant, $module);
+}
+
+@mixin radius-left($variant, $module: null) {
+	border-top-left-radius: fn.radius($variant, $module);
+	border-bottom-left-radius: fn.radius($variant, $module);
+}
+
+@mixin size($length) {
+	@if (meta.type-of($length) == "number") {
+		$length: #{$length}px;
+	}
+
+	width: $length;
+	height: $length;
+}

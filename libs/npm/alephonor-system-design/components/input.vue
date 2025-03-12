@@ -31,6 +31,10 @@ const model = defineModel();
 	</div>
 </template>
 
-<style>
-@import "./input.css" layer(components);
+<style lang="scss">
+@use "./input.root";
+</style>
+
+<style lang="scss" scoped>
+@use "./input";
 </style>

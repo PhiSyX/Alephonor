@@ -41,6 +41,51 @@ let servicesModel = defineModel<DefaultModel>();
 					</ul>
 				</nav>
 			</details>
+
+			<details open>
+				<summary>Applications</summary>
+
+				<nav role="navigation">
+					<ul role="tablist">
+						<li><a href="#">Design</a></li>
+						<li><a href="#">Client Git</a></li>
+						<li><a href="#">Gestion base de données</a></li>
+						<li><a href="#">Schéma MCD</a></li>
+						<li><a href="#">Schéma UML</a></li>
+					</ul>
+				</nav>
+			</details>
+
+			<details open>
+				<summary>Formation</summary>
+
+				<nav role="navigation">
+					<ul role="tablist">
+						<li><a href="#">Formateurs</a></li>
+						<li><a href="#">Stagiaires</a></li>
+						<li><a href="#">Présences</a></li>
+						<li><a href="#">Statistiques</a></li>
+					</ul>
+				</nav>
+			</details>
+
+			<details open>
+				<summary>Exercices</summary>
+
+				<nav role="navigation">
+					<ul role="tablist">
+						<li><a href="#">Mes notes</a></li>
+						<li><a href="#">Algorithmie</a></li>
+						<li><a href="#">CSS</a></li>
+						<li><a href="#">HTML</a></li>
+						<li><a href="#">Java</a></li>
+						<li><a href="#">JavaScript</a></li>
+						<li><a href="#">PHP</a></li>
+						<li><a href="#">SQL</a></li>
+						<li><a href="#">UML</a></li>
+					</ul>
+				</nav>
+			</details>
 		</aside>
 
 		<div class="dashboard:screen:environnements">
@@ -61,10 +106,10 @@ let servicesModel = defineModel<DefaultModel>();
 	</section>
 </template>
 
-<style>
-@import "./dashboard-screen.vars.css";
+<style lang="scss">
+@use "./dashboard-screen.root";
 </style>
 
-<style scoped>
-@import "./dashboard-screen.css" layer(screens);
+<style lang="scss" scoped>
+@use "./dashboard-screen";
 </style>

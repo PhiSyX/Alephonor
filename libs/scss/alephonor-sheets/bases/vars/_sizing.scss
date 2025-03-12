@@ -1,0 +1,17 @@
+:root {
+	@for $i from 1 through 10 {
+		--size-#{$i * 10}per: #{$i * 10%};
+	}
+}
+
+:root {
+	--size-cont: 75vw;
+	--size-text: 80ch;
+	--size-full: 100%;
+
+	--radius-full: 9999px;
+	--radius-sm: 4px;
+	--radius-md: 8px;
+	--radius-lg: 12px;
+	--radius-xl: 16px;
+}

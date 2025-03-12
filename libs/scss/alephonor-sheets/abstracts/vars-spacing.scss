@@ -1,5 +1,0 @@
-:root {
-	@for $i from 1 through 10 {
-		--spacing-#{$i}: calc(#{$i} * 0.5rem);
-	}
-}

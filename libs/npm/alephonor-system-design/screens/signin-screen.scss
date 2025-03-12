@@ -1,99 +1,100 @@
+@use "@alephonor/sheets/abstracts/functions" as fn;
+@use "@alephonor/sheets/abstracts/mixins" as mx;
+
 $auth-title-small-surface: transparent !default;
 $auth-title-small-on-surface: transparent !default;
 
-@layer screens {
-	.auth\:signin {
-		max-width: 70ch;
-		margin-inline: auto;
-		padding: var(--spacing-8) var(--spacing-10);
-		background: var(--auth-signin-surface);
-		color: var(--auth-signin-on-surface);
+.auth\:signin {
+	max-width: 70ch;
+	margin-inline: auto;
+	padding: var(--spacing-8) var(--spacing-10);
 
-		& > * + * {
-			margin-top: var(--spacing-3);
-		}
+	@include mx.bgcolor(signin, $module: auth);
+
+	& > * + * {
+		margin-top: fn.space(lg);
 	}
+}
 
-	.auth\:title {
-		font-size: 24px;
+.auth\:title {
+	font-size: 24px;
 
-		small {
-			padding: 4px;
-			border-radius: 8px;
-			background: $auth-title-small-surface;
-			color: $auth-title-small-on-surface;
-		}
+	small {
+		padding: 4px;
+		border-radius: fn.radius(md);
+		background: $auth-title-small-surface;
+		color: $auth-title-small-on-surface;
 	}
+}
 
-	.auth\:avatar {
-		max-width: 150px;
-		max-height: 150px;
-		margin-inline: auto;
+.auth\:avatar {
+	max-width: fn.space(150);
+	max-height: fn.space(150);
+	margin-inline: auto;
+}
+
+.auth\:avatar img {
+	display: inline-block;
+	width: 100%;
+	max-height: inherit;
+	border-radius: fn.radius(full);
+	transition: box-shadow 250ms ease-in-out;
+
+	&:hover {
+		box-shadow: 0px 0px 12px 2px $auth-title-small-surface;
 	}
+}
 
-	.auth\:avatar img {
-		display: inline-block;
-		width: 100%;
-		max-height: inherit;
-		border-radius: var(--radius-full);
-		transition: box-shadow 250ms ease-in-out;
+.auth\:form {
+	display: grid;
+	gap: fn.space(md);
+}
 
-		&:hover {
-			box-shadow: 0px 0px 12px 2px $auth-title-small-surface;
-		}
+.auth\:form button[type="submit"] {
+	width: max-content;
+	padding-block: fn.space(sm);
+	padding-inline: fn.space(lg);
+	border: none;
+	border-radius: fn.radius(md);
+}
+
+.auth\:input--error {
+	animation: 250ms shake-anim alternate;
+}
+
+@keyframes shake-anim {
+	0% {
+		transform: translateX(-2%);
+		margin-left: 0;
 	}
-
-	.auth\:form {
-		display: grid;
-		gap: var(--spacing-2);
+	25% {
+		margin-left: 0.5rem;
 	}
-
-	.auth\:form button[type="submit"] {
-		width: max-content;
-		padding-block: var(--spacing-1);
-		padding-inline: var(--spacing-3);
-		border: none;
-		border-radius: var(--radius-m);
+	75% {
+		margin-left: -0.5rem;
 	}
-
-	.auth\:input--error {
-		animation: 250ms shake-anim alternate;
+	100% {
+		transform: translateX(2%);
+		margin-left: 0;
 	}
+}
 
-	@keyframes shake-anim {
-		0% {
-			transform: translateX(-2%);
-			margin-left: 0rem;
-		}
-		25% {
-			margin-left: 0.5rem;
-		}
-		75% {
-			margin-left: -0.5rem;
-		}
-		100% {
-			transform: translateX(2%);
-			margin-left: 0rem;
-		}
-	}
+.auth\:form > hr[text] {
+	--hr-bordered: #3747b6;
+	--hr-surface: fn.bg(signin, $module: auth);
+	--hr-on-surface: fn.color(signin, $module: auth);
 
-	.auth\:form > hr[text] {
-		--hr-bordered: #3747b6;
-		--hr-surface: var(--auth-signin-surface);
-		--hr-on-surface: var(--auth-signin-on-surface);
+	width: 100%;
+}
 
-		width: var(--size-full);
-	}
+.auth\:form a {
+	color: fn.color(signin-link, $module: auth);
+	text-align: center;
+}
 
-	.auth\:form > a {
-		color: var(--auth-signin-link);
-		text-align: center;
-	}
-
-	.input\:group {
-		display: grid;
-		gap: 1px;
-		overflow: clip;
-		border-radius: var(--radius-m);
-	}
+.input\:group {
+	display: grid;
+	gap: 1px;
+	overflow: clip;
+	border-radius: fn.radius(md);
 }

@@ -1,0 +1,11 @@
+@use "@alephonor/sheets/abstracts/functions" as fn;
+
+$input-surface: #3c4043 !default;
+$input-on-surface: fn.color(white) !default;
+$input-surface-alt: #303437 !default;
+
+:root {
+	--input-surface: #{$input-surface};
+	--input-on-surface: #{$input-on-surface};
+	--input-surface-alt: #{$input-surface-alt};
+}

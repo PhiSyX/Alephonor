@@ -1,0 +1,11 @@
+@use "../abstracts/vars" as vars;
+
+@use "@alephonor/sheets/bases/root";
+
+:root {
+	--body-surface: #{vars.$body-surface};
+	--body-on-surface: #{vars.$body-on-surface};
+	--heading-on-surface: #{vars.$heading-on-surface};
+	--link-on-surface: #{vars.$link-on-surface};
+	--link-hover-on-surface: #{vars.$link-hover-on-surface};
+}

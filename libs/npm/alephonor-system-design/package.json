@@ -6,6 +6,7 @@
 	"type": "module",
 	"dependencies": {
 		"@alephonor/domain": "workspace:",
+		"@alephonor/sheets": "workspace:",
 		"vue": "catalog:"
 	}
 }

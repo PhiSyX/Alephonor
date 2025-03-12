@@ -1,0 +1,47 @@
+@use "@alephonor/sheets/abstracts/functions" as fn;
+@use "@alephonor/sheets/abstracts/mixins" as mx;
+
+.input-container {
+	display: flex;
+	gap: fn.space(sm);
+	padding: fn.space(sm);
+
+	@include mx.bgcolor(input);
+
+	& > input {
+		flex-grow: 1;
+
+		padding: fn.space(sm);
+		border: none;
+		outline: none;
+		border-radius: fn.radius(md);
+		background: transparent;
+		color: fn.color(input);
+	}
+	& > button {
+		color: fn.color(input);
+	}
+
+	& > input[type="date"]:invalid {
+		opacity: 50%;
+	}
+
+	& > select {
+		flex-grow: 1;
+		border: 0;
+		outline: none;
+		appearance: none;
+		background: transparent;
+		color: fn.color(register, $module: auth);
+	}
+
+	& > select optgroup,
+	& > select option {
+		background: fn.bg(input);
+		color: fn.color(register, $module: auth);
+	}
+
+	& > select option[placeholder] {
+		opacity: 50%;
+	}
+}

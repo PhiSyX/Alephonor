@@ -49,12 +49,15 @@ const emit = defineEmits<Emits>();
 	</header>
 </template>
 
-<style>
+<style lang="scss">
+@use "@alephonor/sheets/abstracts/functions" as fn;
+@use "@alephonor/sheets/abstracts/mixins" as mx;
+
 .app\:win\:header {
 	display: flex;
 	justify-content: end;
-	gap: var(--spacing-4);
-	padding: var(--spacing-1);
+	gap: fn.space(xl);
+	padding: fn.space(sm);
 
 	& > nav ul {
 		display: grid;
@@ -63,21 +66,22 @@ const emit = defineEmits<Emits>();
 }
 
 .app\:win\:title {
-	margin-top: var(--spacing-2);
+	margin-top: fn.space(md);
 	flex-grow: 1;
 	text-align: center;
 }
 
 .app\:searchbar {
 	width: 25vw;
-	padding: var(--spacing-1);
+	padding: fn.space(sm);
 
 	input {
 		width: 100%;
-		padding: var(--spacing-1);
+		padding: fn.space(sm);
 		border: none;
-		border-radius: var(--radius-s);
-		background: var(--color-grey-700);
+		border-radius: fn.radius(sm);
+		/** fixme */
+		background: fn.bg(grey, 700);
 		text-overflow: ellipsis;
 	}
 }

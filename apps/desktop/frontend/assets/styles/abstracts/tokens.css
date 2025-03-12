@@ -1,7 +1,0 @@
-:root {
-	--body-surface: var(--color-black);
-	--body-on-surface: var(--color-white);
-	--heading-on-surface: var(--color-white);
-	--link-on-surface: var(--color-blue-300);
-	--link-hover-on-surface: var(--color-black);
-}

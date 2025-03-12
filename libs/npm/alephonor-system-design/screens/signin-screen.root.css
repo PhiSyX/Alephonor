@@ -1,0 +1,7 @@
+:root {
+	--auth-signin-surface: var(--color-black);
+	--auth-signin-on-surface: var(--color-white);
+	--auth-signin-signin-on-surface: #d4d4d4;
+	--auth-signin-signin-note-on-surface: #999fd1;
+	--auth-signin-link-on-surface: var(--color-red);
+}

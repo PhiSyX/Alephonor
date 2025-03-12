@@ -17,7 +17,7 @@ if (import.meta.env.PROD) {
 </template>
 
 <style lang="scss">
-@import "../assets/styles/main.css";
+@use "../assets/styles/main.scss";
 
 #app,
 main[role="main"] {
