@@ -14,12 +14,14 @@
 		"macOSPrivateApi": true,
 		"windows": [
 			{
-				"title": "Alephonor",
-				"maximized": true,
-				"devtools": true,
 				"contentProtected": true,
 				"decorations": false,
-				"transparent": true
+				"devtools": true,
+				"minWidth": 1200,
+				"minHeight": 800,
+				"maximized": true,
+				"transparent": true,
+				"title": "Alephonor"
 			}
 		],
 		"security": {

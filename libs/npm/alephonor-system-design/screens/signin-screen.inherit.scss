@@ -21,13 +21,13 @@ $input-on-surface: transparent !default;
 			to left,
 			var(--input-surface) 70%,
 			var(--input-surface-alt)
-		);
+		) !important;
 	}
 	.bg-gradient-r {
 		background: linear-gradient(
 			to right,
 			var(--input-surface),
 			var(--input-surface-alt)
-		);
+		) !important;
 	}
 }

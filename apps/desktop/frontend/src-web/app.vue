@@ -12,4 +12,16 @@ if (import.meta.env.PROD) {
 
 <style lang="scss">
 @use "../assets/styles/main";
+
+#app,
+main[role="main"] {
+	display: flex;
+	flex-direction: column;
+}
+#app {
+	height: var(--size-full);
+}
+main[role="main"] {
+	flex-grow: 1;
+}
 </style>

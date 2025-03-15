@@ -1,3 +1,4 @@
+use std::time::Duration;
 use tokio::process::Command;
 
 const XAMPP_ROOT: &str = "/Applications/XAMPP/xamppfiles";
@@ -22,6 +23,7 @@ pub async fn start_apache2_service()
 	cmd.args(["-E", "./logs/error_log"]);
 	cmd.args(["-k", "start"]);
 	_ = cmd.output().await.expect("Failed to execute command");
+	tokio::time::sleep(Duration::from_millis(250)).await;
 }
 
 pub async fn stop_apache2_service()

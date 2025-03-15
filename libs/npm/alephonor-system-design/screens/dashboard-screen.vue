@@ -2,18 +2,24 @@
 import type { Service } from "@alephonor/domain/entities/service";
 import type { ScreenEmits } from "./index";
 
-import ApplicationService from "../services/application-service.vue";
-
 interface Props {
 	onCallBackend<T>(pathname: string, data?: object): Promise<T>;
 }
 
 interface Emits extends ScreenEmits {}
 
+interface Slots {
+	default: {
+		services: Array<Service>;
+		onCallBackend: Props["onCallBackend"];
+	};
+}
+
 type DefaultModel = Array<Service>;
 
 defineProps<Props>();
 defineEmits<Emits>();
+defineSlots<Slots>();
 let servicesModel = defineModel<DefaultModel>();
 </script>
 
@@ -21,7 +27,7 @@ let servicesModel = defineModel<DefaultModel>();
 	<section class="dashboard:screen">
 		<aside>
 			<details open>
-				<summary>Services</summary>
+				<summary>Environnements</summary>
 
 				<nav role="navigation">
 					<ul role="tablist">
@@ -38,11 +44,17 @@ let servicesModel = defineModel<DefaultModel>();
 								</a>
 							</li>
 						</template>
+
+						<li>
+							<RouterLink to="/env/webserver">
+								Serveur Web
+							</RouterLink>
+						</li>
 					</ul>
 				</nav>
 			</details>
 
-			<details open>
+			<details open hidden>
 				<summary>Applications</summary>
 
 				<nav role="navigation">
@@ -56,7 +68,7 @@ let servicesModel = defineModel<DefaultModel>();
 				</nav>
 			</details>
 
-			<details open>
+			<details open hidden>
 				<summary>Formation</summary>
 
 				<nav role="navigation">
@@ -69,7 +81,7 @@ let servicesModel = defineModel<DefaultModel>();
 				</nav>
 			</details>
 
-			<details open>
+			<details open hidden>
 				<summary>Exercices</summary>
 
 				<nav role="navigation">
@@ -88,21 +100,9 @@ let servicesModel = defineModel<DefaultModel>();
 			</details>
 		</aside>
 
-		<div class="dashboard:screen:environnements">
-			<h1>
-				Gérer les environnements
-				<button type="button">Ajouter un nouvel environnement</button>
-			</h1>
-
-			<div>
-				<ApplicationService
-					v-for="service of servicesModel"
-					:key="`^${service.name}`"
-					:service="service"
-					@call-backend="onCallBackend"
-				/>
-			</div>
-		</div>
+		<section class="dashboard:screen:content">
+			<slot :services="servicesModel" @call-backend="onCallBackend" />
+		</section>
 	</section>
 </template>
 

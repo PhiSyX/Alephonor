@@ -4,6 +4,7 @@
 .dashboard\:screen {
 	display: flex;
 	height: 100%;
+	overflow: hidden;
 }
 
 .dashboard\:screen > aside {
@@ -80,50 +81,12 @@
 	}
 }
 
-.dashboard\:screen .dashboard\:screen\:environnements {
+.dashboard\:screen\:content {
 	flex-grow: 1;
-
 	padding: fn.space(md);
-
+	@include mx.bgcolor(dashboard-environments);
 	@include mx.radius-left(sm);
-	@include mx.bgcolor(dashboard-environnements);
-
-	h1 {
-		padding-block: fn.space(md);
-		/* fixme */
-		border-bottom: 1px solid fn.color(grey, 300);
-		color: fn.color(dashboard-environnements);
-	}
-
-	h1 button {
-		font-family: "Cambay Devanagari MT", sans-serif;
-		padding-inline: fn.space(md);
-		border-radius: fn.radius(sm);
-		/* fixme */
-		background: fn.bg(blue, 300);
-		/* fixme */
-		color: fn.color(white);
-		/* fixme */
-		box-shadow: 2px 2px 2px fn.color(blue-grey, 400);
-		cursor: pointer;
-		float: right;
-
-		&:active {
-			/* fixme */
-			background: fn.bg(blue, 400);
-		}
-	}
-
-	> div {
-		display: flex;
-		flex-wrap: wrap;
-		align-content: baseline;
-		gap: fn.space(md);
-	}
-
-	> div > * {
-		flex-shrink: 0;
-	}
+	overflow: auto;
 }
 
 .badge {

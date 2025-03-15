@@ -20,7 +20,8 @@ watch(
 	() => route.meta.title as string,
 	async (title) => {
 		let nTitle = title;
-		if (title.length === 0) {
+
+		if (title?.length === 0) {
 			nTitle = await win.title();
 		}
 

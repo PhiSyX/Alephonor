@@ -1,0 +1,41 @@
+@use "@alephonor/sheets/abstracts/functions" as fn;
+@use "@alephonor/sheets/abstracts/mixins" as mx;
+
+.dashboard\:screen\:environments {
+	h1 {
+		padding-block: fn.space(md);
+		/* fixme */
+		border-bottom: 1px solid fn.color(grey, 300);
+		color: fn.color(dashboard-environments);
+	}
+
+	h1 button {
+		font-family: "Cambay Devanagari MT", sans-serif;
+		padding-inline: fn.space(md);
+		border-radius: fn.radius(sm);
+		/* fixme */
+		background: fn.bg(blue, 300);
+		/* fixme */
+		color: fn.color(white);
+		/* fixme */
+		box-shadow: 2px 2px 2px fn.color(blue-grey, 400);
+		cursor: pointer;
+		float: right;
+
+		&:active {
+			/* fixme */
+			background: fn.bg(blue, 400);
+		}
+	}
+
+	> div {
+		display: flex;
+		flex-wrap: wrap;
+		align-content: baseline;
+		gap: fn.space(md);
+	}
+
+	> div > * {
+		flex-shrink: 0;
+	}
+}

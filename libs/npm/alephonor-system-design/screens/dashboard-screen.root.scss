@@ -1,6 +1,12 @@
 @use "@alephonor/sheets/abstracts/functions" as fn;
 
 :root {
-	--dashboard-environnements-surface: #{fn.color(white)};
-	--dashboard-environnements-on-surface: #{fn.color(black)};
+	--dashboard-environments-surface: #{fn.color(white)};
+	--dashboard-environments-on-surface: #{fn.color(black)};
+}
+
+.dashboard\:screen\:content {
+	* {
+		color: fn.color(dashboard-environments);
+	}
 }

@@ -29,5 +29,6 @@ main[role="main"] {
 }
 main[role="main"] {
 	flex-grow: 1;
+	overflow: auto;
 }
 </style>

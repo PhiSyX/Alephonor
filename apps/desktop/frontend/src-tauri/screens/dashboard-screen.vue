@@ -3,11 +3,11 @@ import { invoke, type InvokeArgs } from "@tauri-apps/api/core";
 // import { readTextFile } from "@tauri-apps/plugin-fs";
 // import { appDataDir, resolve } from "@tauri-apps/api/path";
 import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
 
 import type { Service } from "@alephonor/domain/entities/service";
 import type { Screen } from "@alephonor/domain/screens/enum";
 import DashboardScreen from "@alephonor/system-design/screens/dashboard-screen.vue";
-import { useRouter } from "vue-router";
 
 const router = useRouter();
 
@@ -35,5 +35,9 @@ async function callBackend<T>(name: string, args?: InvokeArgs): Promise<T> {
 		v-model="services"
 		@call-backend="callBackend"
 		@change-screen="changeScreen"
-	/>
+	>
+		<template v-slot="{ services, onCallBackend }">
+			<RouterView :services="services" :onCallBackend="onCallBackend" />
+		</template>
+	</DashboardScreen>
 </template>

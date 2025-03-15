@@ -65,7 +65,7 @@ async function installService() {
 	}
 }
 
-onMounted(() => checkService());
+onMounted(async () => await checkService());
 </script>
 
 <template>
@@ -107,6 +107,6 @@ onMounted(() => checkService());
 	</article>
 </template>
 
-<style scoped>
-@import "./application-service.css" layer(components);
+<style lang="scss" scoped>
+@use "./application-service";
 </style>
