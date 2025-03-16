@@ -32,6 +32,21 @@ body {
 	overflow: hidden;
 }
 
+$heading: (
+	h1: 2em,
+	h2: 1.8em,
+	h3: 1.65em,
+	h4: 1.45em,
+	h5: 1.3em,
+	h6: 1.15em,
+);
+
+@each $level, $size in $heading {
+	#{$level}, .#{$level}-like {
+		font-size: #{$size};
+	}
+}
+
 h1,
 .h1-like,
 h2,
