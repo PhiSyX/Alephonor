@@ -1,118 +1,149 @@
 <script setup lang="ts">
-const webservers = [
-	{
-		id: 1,
-		name: "Apache2",
-	},
-	{ id: 2, name: "Caddy" },
-	{ id: 3, name: "NGINX" },
-];
+import { computed, shallowRef } from "vue";
+
+import HttpServer, {
+	type Config as HttpServerConfig,
+	type State as HttpServerState,
+} from "./webserver/http-server.vue";
+import LangPhp, {
+	type Config as LangPHPConfig,
+	type State as LangPHPState,
+} from "./webserver/lang-php.vue";
+import DbServer, {
+	type Config as DbServerConfig,
+	type State as DbServerState,
+} from "./webserver/db-server.vue";
+
+interface Props {
+	config: {
+		db: DbServerConfig;
+		http: HttpServerConfig;
+		php: LangPHPConfig;
+	};
+}
+
+interface State {
+	db?: DbServerState;
+	http?: HttpServerState;
+	php?: LangPHPState;
+}
+
+const { config } = defineProps<Props>();
+
+let state = defineModel<State>({ required: true });
+let currentTab = shallowRef("http-server");
+
+function changeTab(evt: MouseEvent, tab: "http-server" | "db-server" | "php") {
+	evt.preventDefault();
+	currentTab.value = tab;
+}
 </script>
 
 <template>
 	<article class="env:webserver">
-		<div class="container">
-			<h1>Configuration « Serveur Web »</h1>
-		</div>
+		<nav role="navigation" class="breadcrumb">
+			<ul role="tablist">
+				<li>
+					<a href="#http-server" @click="changeTab($event, 'http-server')">
+						Serveur HTTP
+					</a>
+				</li>
 
-		<details class="container" open>
-			<summary class="h2-like">Configuration du serveur</summary>
-			<div>
-				<label for="web_server">
-					Choisir le serveur web à utiliser
-				</label>
+				<li>
+					<a href="#php" @click="changeTab($event, 'php')">
+						PHP
+					</a>
+				</li>
 
-				<select name="web_server">
-					<option v-for="webserver of webservers" :key="webserver.name" :value="webserver.id">
-						{{ webserver.name }}
-					</option>
-				</select>
-			</div>
-			
-			<div>
-				<label for="webserver_config_file">
-					Emplacement du fichier de configuration serveur
-				</label>
+				<li>
+					<a href="#db-server" @click="changeTab($event, 'db-server')">
+						Base de données
+					</a>
+				</li>
+			</ul>
 
-				<input type="text" id="webserver_config_file" placeholder="/etc/apache2/httpd.conf" />
-			</div>
+			<button type="submit" form="form_webserver">Sauvegarder</button>
+		</nav>
 
-			<div>
-				<input type="checkbox" name="webserver_options_indexes" id="webserver_options_indexes">
-				&nbsp;
-				<label for="webserver_options_indexes">
-					Lister les fichiers lorsque le fichier d'index est manquant dans un répertoire
-				</label>
-			</div>
-		</details>
+		<form class="container" action="" method="post" id="form_webserver">
+			<HttpServer
+				v-if="currentTab === 'http-server'"
+				v-model="state.http"
+				:config="config.http"
+				class="form-webserver-group"
+			/>
 
-		<details class="container" open>
-			<summary class="h2-like">Configuration PHP</summary>
-			
-			<div>
-				<label for="php_version">
-					Choisir la version de PHP
-				</label>
+			<LangPhp 
+				v-if="currentTab === 'php'" 
+				v-model="state.php"
+				:config="config.php"
+				class="form-webserver-group"
+			/>
 
-				<select id="php_version" name="php_version">
-					<option value="1">8.4</option>
-					<option value="2">8.3</option>
-					<option value="3">8.2</option>
-				</select>
-			</div>
-
-			<div>
-				<label for="php_config_file">
-					Emplacement du fichier de configuration de PHP
-				</label>
-				<input type="text" id="php_config_file" placeholder="/etc/php/php.ini" />
-			</div>
-
-			<div>
-				<input type="checkbox" name="php_composer" id="composer">
-				&nbsp;
-				<label for="composer">Activer Composer (Gestionnaire de paquet)</label>
-			</div>
-
-			<div>
-				<input type="checkbox" name="php_ext_xdebug" id="xdebug">
-				&nbsp;
-				<label for="xdebug">Activer l'extension XDebug</label>
-			</div>
-		</details>
-
-
-		<details class="container" open>
-			<summary class="h2-like">Base de données</summary>
-
-			<label for="db_server">
-				Choisir la/les base(s) de données à utiliser
-			</label>
-
-			<select id="db_server" name="db_server[]" multiple>
-				<option value="1">MariaDB</option>
-				<option value="2">MySQL</option>
-				<option value="3">PostgreSQL</option>
-			</select>
-		</details>
-
-		<div class="container">
-			<button type="submit">Sauvegarder</button>
-		</div>
+			<DbServer
+				v-if="currentTab === 'db-server'" 
+				v-model="state.db"
+				:config="config.db"
+				class="form-webserver-group"
+			/>
+		</form>
 	</article>
 </template>
 
-<style>
+<style lang="scss">
+@use "@alephonor/sheets/abstracts/functions" as fn;
+@use "@alephonor/sheets/abstracts/mixins" as mx;
+
 .dashboard\:screen\:content:has(.env\:webserver) {
-	background-image: url(./amp.png);
-	background-origin: border-box;
-	background-position: center;
-	background-size: cover;
+	/* --dashboard-screen: url(./amp.png); */
+	padding: 0;
 }
 
-.env\:webserver {
-	> * + * {
-		margin-top: .5rem;
+.form-webserver-group {
+	display: grid;
+	gap: 1rem;
+
+	> div > * + * {
+		margin-top: .25rem;
+	}
+
+	select,
+	input[type="number"],
+	input[type="text"] {
+		width: 100%;
+		padding: .5rem;
+		border-radius: 6px;
+		background: var(--color-black);
+		color: var(--color-white);
+		appearance: none;
+	}
+
+	input[type="checkbox"] {
+		@include mx.size(24);
+
+		outline: none !important;
+		border: 1px solid var(--color-blue-grey-200);
+		border-radius: 4px;
+		background: var(--color-blue-grey-100);
+		appearance: none;
+
+		&:hover {
+			border-style: inset;
+		}
+
+		&:checked {
+			border-style: inset;
+			background: var(--color-blue-grey-200);
+			background-image: fn.svg('<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.00001 20.42L2.79001 14.21L5.62001 11.38L9.00001 14.77L18.88 4.88L21.71 7.71L9.00001 20.42Z" fill="currentColor" /></svg>');
+		}
+
+		&:active {
+			border-style: outset;
+		}
+	}
+
+	select option {
+		color: var(--color-white);
 	}
 }
 </style>
@@ -123,23 +154,33 @@ const webservers = [
 	margin-inline: auto;
 }
 
-details summary {
-	outline: none !important;
+.breadcrumb {
+	padding: .5rem;
 }
 
-select, input[type="text"] {
-	width: 100%;
-	padding: .5rem;
-	border-radius: 6px;
-	background: var(--color-black);
-	color: var(--color-white);
-	appearance: none;
+.breadcrumb {
+	display: flex;
+	align-items: center;
+	margin-bottom: 3rem;
+	border-bottom: 1px inset var(--color-blue-grey-100);
 }
-select option {
-	color: var(--color-white);
+
+.breadcrumb ul {
+	display: flex;
+	gap: 8px;
+	flex-grow: 1;
+}
+
+.breadcrumb ul li {
+	padding: 4px;
+	border: 1px solid var(--color-blue-grey-200);
+	border-radius: 4px;
+	background: var(--color-blue-grey-100);
 }
 
 button[type="submit"] {
+	margin-left: auto;
+
 	padding: .5rem;
 	border-radius: 6px;
 	color: var(--color-white);

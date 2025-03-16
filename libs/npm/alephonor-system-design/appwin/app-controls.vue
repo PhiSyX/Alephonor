@@ -2,7 +2,6 @@
 import IconTheme from "../icons/icon-theme.vue";
 
 interface Emits {
-	// biome-ignore lint/style/useShorthandFunctionType: ;-)
 	(evtName: "toggle-theme"): void;
 }
 

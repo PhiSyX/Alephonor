@@ -13,6 +13,9 @@
 		"statusBar.foreground": "#ffffff",
 	},
 	"cSpell.words": [
-		"alephonor"
+		"alephonor",
+		"dbserver",
+		"httpserver",
+		"httpservers"
 	]
 }

@@ -17,58 +17,87 @@
         "rules": {
             "recommended": true,
             "a11y": {
-                "recommended": true
+                "all": true
             },
             "complexity": {
                 "recommended": true,
                 "useLiteralKeys": "off",
                 "useOptionalChain": "off"
             },
+            "correctness": {
+                "recommended": true
+            },
+            "nursery": {
+                "recommended": true
+            },
+            "performance": {
+                "recommended": true
+            },
+            "security": {
+                "recommended": true
+            },
             "style": {
                 "recommended": true,
-                "useConst": "off"
+                "useConst": "off",
+                "useShorthandFunctionType": "off"
             },
             "suspicious": {
                 "recommended": true,
-                "noEmptyInterface": "off"
+                "noEmptyInterface": "off",
+                "useGetterReturn": "error"
             }
         }
     },
     "formatter": {
         "enabled": true,
+        "formatWithErrors": true,
         "ignore": [
             ".vscode",
             "dist",
             "target",
             "public"
         ],
-        "indentWidth": 4,
-        "indentStyle": "tab",
+        "useEditorconfig": true,
         "lineWidth": 80
     },
     "javascript": {
         "formatter": {
             "enabled": true,
-            "arrowParentheses": "always",
             "lineWidth": 80,
             "quoteStyle": "double",
             "jsxQuoteStyle": "double",
             "semicolons": "always",
-            "trailingCommas": "all",
-            "attributePosition": "multiline",
-            "quoteProperties": "asNeeded"
+            "trailingCommas": "all"
+        },
+        "assists": {
+            "enabled": true
+        },
+        "linter": {
+            "enabled": true
         }
     },
     "css": {
         "formatter": {
             "enabled": true,
             "quoteStyle": "double"
+        },
+        "assists": {
+            "enabled": true
+        },
+        "linter": {
+            "enabled": true
         }
     },
     "json": {
         "formatter": {
             "enabled": true,
             "trailingCommas": "none"
+        },
+        "linter": {
+            "enabled": true
+        },
+        "assists": {
+            "enabled": true
         }
     }
 }

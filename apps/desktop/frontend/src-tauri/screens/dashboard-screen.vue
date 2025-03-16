@@ -37,7 +37,9 @@ async function callBackend<T>(name: string, args?: InvokeArgs): Promise<T> {
 		@change-screen="changeScreen"
 	>
 		<template v-slot="{ services, onCallBackend }">
-			<RouterView :services="services" :onCallBackend="onCallBackend" />
+			<Suspense>
+				<RouterView :services="services" :onCallBackend="onCallBackend" />
+			</Suspense>
 		</template>
 	</DashboardScreen>
 </template>

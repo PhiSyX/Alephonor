@@ -85,6 +85,10 @@
 	flex-grow: 1;
 	padding: fn.space(md);
 	@include mx.bgcolor(dashboard-environments);
+	background-image: var(--dashboard-screen);
+	background-origin: border-box;
+	background-position: center;
+	background-size: cover;
 	@include mx.radius-left(sm);
 	overflow: auto;
 }

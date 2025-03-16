@@ -38,10 +38,10 @@ export const ROUTES: Array<RouteRecordRaw> = [
 		children: [
 			{
 				path: "webserver",
-				component: () =>
-					import(
-						"@alephonor/system-design/pages/environment/webserver.vue"
-					),
+				component: () => import("../pages/environment/webserver.vue"),
+				meta: {
+					title: "Environnement « Serveur Web »",
+				},
 			},
 		],
 	},

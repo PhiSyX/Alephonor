@@ -3,7 +3,7 @@ import { Screen } from "@alephonor/domain/screens/enum";
 import AppWinControlsArea from "@alephonor/system-design/appwin/header-area.vue";
 import { getCurrentWindow } from "@tauri-apps/api/window";
 import { type as tauriOsType } from "@tauri-apps/plugin-os";
-import { computed, onUpdated, onMounted, shallowRef, watch } from "vue";
+import { computed, shallowRef, watch } from "vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
