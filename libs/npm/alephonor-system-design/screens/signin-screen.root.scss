@@ -1,0 +1,9 @@
+@use "@alephonor/sheets/abstracts/functions" as fn;
+
+:root {
+	--auth-signin-surface: #{fn.bg(black)};
+	--auth-signin-on-surface: #{fn.color(white)};
+	--auth-signin-signin-on-surface: #{fn.hex2hsl(#d4d4d4)};
+	--auth-signin-signin-note-on-surface: #{fn.hex2hsl(#999fd1)};
+	--auth-signin-link-on-surface: #{fn.color(red)};
+}

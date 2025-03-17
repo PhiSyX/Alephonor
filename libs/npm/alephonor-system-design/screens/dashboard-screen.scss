@@ -61,6 +61,7 @@
 		text-decoration: none;
 	}
 
+	&:has(a.router-link-active),
 	&:hover {
 		/* fixme */
 		background: fn.bg(white);

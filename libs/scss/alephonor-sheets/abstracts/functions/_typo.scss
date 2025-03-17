@@ -1,0 +1,7 @@
+
+@function text($variant, $module: null) {
+	@if $module {
+		@return var(--#{$module}-text-#{$variant});
+	}
+	@return var(--text-#{$variant});
+}

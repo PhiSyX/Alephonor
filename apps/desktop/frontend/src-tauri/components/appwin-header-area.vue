@@ -30,7 +30,7 @@ watch(
 	{ immediate: true }
 );
 
-function toggleTheme(): void {
+function toggleTheme() {
 	// TODO : Oui oui un todo et alors ;-)
 }
 </script>

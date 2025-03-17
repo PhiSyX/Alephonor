@@ -39,6 +39,7 @@ let colors = [
 	"blue-grey",
 ];
 let colorsFgs = {
+	amber: "black",
 	orange: "amber-a100",
 	yellow: "black",
 };
@@ -69,21 +70,21 @@ let randomBgColorAlt = computed(() =>
 );
 
 function bgcolor(name: keyof typeof colorsBgs, def: number) {
-	return `var(--color-${name}-${colorsBgs[name]?.[0] || def})`;
+	return `hsl(var(--color-${name}-${colorsBgs[name]?.[0] || def}))`;
 }
 
 function fgcolor(name: keyof typeof colorsFgs, def: number) {
 	if (colorsFgs[name] && typeof colorsFgs[name] === "string") {
-		return `var(--color-${colorsFgs[name]})`;
+		return `hsl(var(--color-${colorsFgs[name]}))`;
 	}
-	return `var(--color-${name}-${colorsFgs[name]?.[0] || def})`;
+	return `hsl(var(--color-${name}-${colorsFgs[name]?.[0] || def}))`;
 }
 
 function altcolor(name: keyof typeof colorsBgs, def: number) {
 	if (colorsBgs[name] && typeof colorsBgs[name] === "string") {
-		return `var(--color-${colorsBgs[name]})`;
+		return `hsl(var(--color-${colorsBgs[name]}))`;
 	}
-	return `var(--color-${name}-${colorsBgs[name]?.[1] || def})`;
+	return `hsl(var(--color-${name}-${colorsBgs[name]?.[1] || def}))`;
 }
 
 async function post_account_form() {
@@ -156,8 +157,8 @@ async function post_account_form() {
 	</section>
 </template>
 
-<style>
-@import "./signin-screen.root.css";
+<style lang="scss">
+@use "./signin-screen.root";
 </style>
 
 <style lang="scss">

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, shallowRef } from "vue";
+import { shallowRef } from "vue";
 
 import HttpServer, {
 	type Config as HttpServerConfig,
@@ -44,19 +44,23 @@ function changeTab(evt: MouseEvent, tab: "http-server" | "db-server" | "php") {
 		<nav role="navigation" class="breadcrumb">
 			<ul role="tablist">
 				<li>
-					<a href="#http-server" @click="changeTab($event, 'http-server')">
+					<a
+						href="#http-server"
+						@click="changeTab($event, 'http-server')"
+					>
 						Serveur HTTP
 					</a>
 				</li>
 
 				<li>
-					<a href="#php" @click="changeTab($event, 'php')">
-						PHP
-					</a>
+					<a href="#php" @click="changeTab($event, 'php')"> PHP </a>
 				</li>
 
 				<li>
-					<a href="#db-server" @click="changeTab($event, 'db-server')">
+					<a
+						href="#db-server"
+						@click="changeTab($event, 'db-server')"
+					>
 						Base de données
 					</a>
 				</li>
@@ -65,23 +69,23 @@ function changeTab(evt: MouseEvent, tab: "http-server" | "db-server" | "php") {
 			<button type="submit" form="form_webserver">Sauvegarder</button>
 		</nav>
 
-		<form class="container" action="" method="post" id="form_webserver">
+		<form class="container" action="#" method="post" id="form_webserver">
 			<HttpServer
-				v-if="currentTab === 'http-server'"
+				v-show="currentTab === 'http-server'"
 				v-model="state.http"
 				:config="config.http"
 				class="form-webserver-group"
 			/>
 
-			<LangPhp 
-				v-if="currentTab === 'php'" 
+			<LangPhp
+				v-show="currentTab === 'php'"
 				v-model="state.php"
 				:config="config.php"
 				class="form-webserver-group"
 			/>
 
 			<DbServer
-				v-if="currentTab === 'db-server'" 
+				v-show="currentTab === 'db-server'"
 				v-model="state.db"
 				:config="config.db"
 				class="form-webserver-group"
@@ -100,31 +104,35 @@ function changeTab(evt: MouseEvent, tab: "http-server" | "db-server" | "php") {
 }
 
 .form-webserver-group {
-	display: grid;
-	gap: 1rem;
+	legend {
+		width: 100%;
+	}
 
-	> div > * + * {
-		margin-top: .25rem;
+	.help {
+		color: fn.color(grey);
+		font-size: 12px;
 	}
 
 	select,
 	input[type="number"],
+	input[type="password"],
 	input[type="text"] {
 		width: 100%;
-		padding: .5rem;
+		padding: fn.space(sm);
 		border-radius: 6px;
-		background: var(--color-black);
-		color: var(--color-white);
+		background: fn.bg(black);
+		color: fn.color(white);
 		appearance: none;
 	}
 
 	input[type="checkbox"] {
 		@include mx.size(24);
 
+		padding: 12px;
 		outline: none !important;
-		border: 1px solid var(--color-blue-grey-200);
-		border-radius: 4px;
-		background: var(--color-blue-grey-100);
+		border: 1px solid fn.color(blue-grey, 200);
+		border-radius: fn.radius(sm);
+		background: fn.bg(blue-grey, 100);
 		appearance: none;
 
 		&:hover {
@@ -133,8 +141,10 @@ function changeTab(evt: MouseEvent, tab: "http-server" | "db-server" | "php") {
 
 		&:checked {
 			border-style: inset;
-			background: var(--color-blue-grey-200);
-			background-image: fn.svg('<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.00001 20.42L2.79001 14.21L5.62001 11.38L9.00001 14.77L18.88 4.88L21.71 7.71L9.00001 20.42Z" fill="currentColor" /></svg>');
+			background: fn.bg(blue-grey, 200);
+			background-image: fn.svg(
+				'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.00001 20.42L2.79001 14.21L5.62001 11.38L9.00001 14.77L18.88 4.88L21.71 7.71L9.00001 20.42Z" fill="currentColor" /></svg>'
+			);
 		}
 
 		&:active {
@@ -143,47 +153,62 @@ function changeTab(evt: MouseEvent, tab: "http-server" | "db-server" | "php") {
 	}
 
 	select option {
-		color: var(--color-white);
+		color: fn.color(white);
+	}
+}
+
+div.form-webserver-group fieldset,
+fieldset.form-webserver-group {
+	display: grid;
+	gap: fn.space(md);
+
+	> div > * + * {
+		margin-top: 0.25rem;
 	}
 }
 </style>
 
-<style scoped>
+<style lang="scss" scoped>
+@use "@alephonor/sheets/abstracts/functions" as fn;
+
 .container {
 	max-width: 80ch;
 	margin-inline: auto;
 }
 
 .breadcrumb {
-	padding: .5rem;
+	padding: fn.space(md);
 }
 
 .breadcrumb {
+	position: sticky;
+	top: 0;
+	backdrop-filter: blur(3px);
 	display: flex;
 	align-items: center;
-	margin-bottom: 3rem;
-	border-bottom: 1px inset var(--color-blue-grey-100);
+	margin-bottom: fn.space(lg);
+	border-bottom: 1px solid fn.color(blue-grey, 100);
 }
 
 .breadcrumb ul {
 	display: flex;
-	gap: 8px;
+	gap: fn.space(sm);
 	flex-grow: 1;
 }
 
 .breadcrumb ul li {
 	padding: 4px;
-	border: 1px solid var(--color-blue-grey-200);
-	border-radius: 4px;
-	background: var(--color-blue-grey-100);
+	border: 1px solid fn.color(blue-grey, 200);
+	border-radius: fn.radius(sm);
+	background: fn.bg(blue-grey, 100);
 }
 
 button[type="submit"] {
 	margin-left: auto;
 
-	padding: .5rem;
+	padding: fn.space(sm);
 	border-radius: 6px;
-	color: var(--color-white);
-	background: var(--color-black);
+	background: fn.bg(black);
+	color: fn.color(white);
 }
 </style>

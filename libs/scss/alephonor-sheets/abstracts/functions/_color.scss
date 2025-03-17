@@ -1,0 +1,69 @@
+@use "sass:color";
+@use "sass:map";
+@use "sass:string";
+
+@use "../vars" as vars;
+
+/**
+ * Retourne une couleur basé sur le nom d'une variable.
+ *
+ * ```scss
+ * p {
+ *   color: fn.color(red);                   // var(--color-red);
+ *   color: fn.color(red, 200);              // var(--color-red-200);
+ *
+ *   color: fn.color(header-text);           // var(--header-text-on-surface);
+ *   color: fn.color(text, $module: header); // var(--header-text-on-surface);
+ * }
+ * ```
+ */
+@function color($name, $variant: null, $module: null) {
+	@if map.has-key(vars.$color-palette, $name) {
+		@if $variant {
+			@return hsl(var(--color-#{$name}-#{$variant}));
+		}
+		@return hsl(var(--color-#{$name}));
+	}
+
+	@if $module {
+		@return var(--#{$module}-#{$name}-on-surface);
+	}
+	@return var(--#{$name}-on-surface);
+}
+
+/**
+ * Retourne une couleur basé sur le nom d'une variable.
+ *
+ * ```scss
+ * p {
+ *   color: fn.color(red);                   // var(--color-red);
+ *   color: fn.color(red, 200);              // var(--color-red-200);
+ *
+ *   color: fn.color(header-text);           // var(--header-text-on-surface);
+ *   color: fn.color($module: header, text); // var(--header-text-on-surface);
+ * }
+ * ```
+ */
+@function bg($name, $variant: null, $module: null) {
+	@if map.has-key(vars.$color-palette, $name) {
+		@if $variant {
+			@return hsl(var(--color-#{$name}-#{$variant}));
+		}
+		@return hsl(var(--color-#{$name}));
+	}
+	@if $module {
+		@return var(--#{$module}-#{$name}-surface);
+	}
+	@return var(--#{$name}-surface);
+}
+
+@function hex2hsl($hex, $fn: true) {
+	$hue: color.channel($hex, "hue", $space: hsl);
+	$sat: color.channel($hex, "saturation", $space: hsl);
+	$lig: color.channel($hex, "lightness", $space: hsl);
+
+	@if $fn {
+		@return 'hsl(#{$hue},#{$sat},#{$lig})';
+	}
+	@return '#{$hue},#{$sat},#{$lig}';
+}

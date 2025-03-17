@@ -1,0 +1,37 @@
+@use "sass:list";
+@use "sass:math";
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+
+/**
+ * Encode les caractères d'un élément SVG
+ */
+ @function svg($element) {
+	$len: string.length($element) + 1;
+
+	$encode: (
+		'"':"%22",
+		"#":"%23",
+		"%":"%25",
+		"<":"%3C",
+		">":"%3E",
+		"{":"%7B",
+		"}":"%7D"
+	);
+
+	$string: "";
+	$character: "";
+
+	@for $i from 1 to $len {
+		$character: string.slice($element, $i, $i);
+
+		@if list.index(map.keys($encode), $character) {
+			$character: map.get($encode, $character);
+		}
+
+		$string: $string + $character;
+	}
+
+	@return url("data:image/svg+xml," + $string);
+}

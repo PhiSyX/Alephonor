@@ -1,7 +1,10 @@
+@use "sass:color";
+
 @use "../../abstracts/vars" as vars;
+@use "../../abstracts/functions" as fn;
 
 :root {
 	@each $color-name, $color-value in vars.$color-palette {
-		--color-#{"" + $color-name}: #{"" + $color-value};
+		--color-#{"" + $color-name}: #{fn.hex2hsl($color-value, $fn: false)};
 	}
 }

@@ -13,20 +13,20 @@
 		"tauri": "tauri"
 	},
 	"dependencies": {
-		"@alephonor/domain": "workspace:",
-		"@alephonor/sheets": "workspace:",
-		"@alephonor/system-design": "workspace:",
+		"@alephonor/domain": "workspace:^",
+		"@alephonor/sheets": "workspace:^",
+		"@alephonor/system-design": "workspace:^",
 		"@tauri-apps/api": "^2.3.0",
+		"@tauri-apps/cli": "^2.3.1",
 		"@tauri-apps/plugin-fs": "^2.2.0",
-		"@tauri-apps/plugin-opener": "^2.2.0",
-		"@tauri-apps/plugin-os": "^2.2.0",
+		"@tauri-apps/plugin-opener": "^2.2.6",
+		"@tauri-apps/plugin-os": "^2.2.1",
 		"@tauri-apps/plugin-shell": "^2.2.0",
 		"vue": "catalog:",
 		"vue-router": "catalog:"
 	},
 	"devDependencies": {
-		"@tauri-apps/cli": "^2",
-		"@vitejs/plugin-vue": "^5.2.1",
+		"@vitejs/plugin-vue": "^5.2.3",
 		"sass-embedded": "catalog:",
 		"typescript": "catalog:",
 		"vite": "catalog:",

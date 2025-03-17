@@ -26,6 +26,9 @@ const emit = defineEmits<Emits>();
 </template>
 
 <style>
+.app\:controls button {
+	background: transparent;
+}
 .app\:controls button,
 .app\:controls button > svg,
 .app\:controls button > svg * {

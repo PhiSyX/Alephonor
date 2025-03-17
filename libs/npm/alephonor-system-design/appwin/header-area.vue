@@ -35,7 +35,7 @@ const emit = defineEmits<Emits>();
 			/>
 		</div>
 
-		<div class="app:win:title">
+		<div class="app:win:title" dir="ltr">
 			<span v-if="showTitle">{{ title }}</span>
 		</div>
 
@@ -69,6 +69,7 @@ const emit = defineEmits<Emits>();
 	margin-top: fn.space(md);
 	flex-grow: 1;
 	text-align: center;
+	pointer-events: none;
 }
 
 .app\:searchbar {

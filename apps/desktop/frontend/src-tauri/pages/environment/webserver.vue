@@ -114,7 +114,7 @@ const state = reactive({
 		2: {
 			semver: 410,
 			config_file: "~/Developer/infra/Caddy/Caddyfile",
-			working_dir: "~/Developer/www",
+			working_dir: ["~/Developer/www"],
 		},
 	},
 	php: {

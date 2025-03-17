@@ -20,7 +20,7 @@ export interface State {
 		config_file?: string;
 		port?: number;
 		semver: number;
-		working_dir?: string;
+		working_dir?: Array<string>;
 	};
 }
 
@@ -33,7 +33,7 @@ let state = defineModel<State>();
 
 const userHttpServer = computed(() => {
 	let server = config.available_list.find(
-		(s) => state.value?.current_server_id === s.id,
+		(s) => state.value?.current_server_id === s.id
 	);
 
 	if (!server) {
@@ -49,7 +49,21 @@ const userHttpServer = computed(() => {
 	};
 });
 
-function onSelect(e: Event & { target: HTMLSelectElement }): void {
+const httpServerURL = computed(() => {
+	let port = userHttpServer.value?.user_port || 80;
+	let s_port = port.toFixed();
+	let s = port === 443 ? "s" : "";
+
+	if (port === 80 || port === 443) {
+		s_port = "";
+	} else {
+		s_port = `:${port}`;
+	}
+
+	return `http${s}://localhost${s_port}`;
+});
+
+function onSelect(e: Event & { target: HTMLSelectElement }) {
 	let httpServerId = Number(e.target.value);
 
 	let server = config.available_list.find((w) => w.id === httpServerId);
@@ -74,56 +88,118 @@ function onSelect(e: Event & { target: HTMLSelectElement }): void {
 </script>
 
 <template>
-    <fieldset>
-        <legend class="h2-like">Configuration du serveur HTTP</legend>
+	<div>
+		<fieldset>
+			<legend class="h2-like">Configuration du serveur HTTP</legend>
 
-        <div>
-            <label for="httpserver">
-                Choisir le serveur web à utiliser
-            </label>
+			<div>
+				<label for="httpserver"> Choisir le serveur HTTP </label>
 
-            <select name="httpserver" @change="onSelect">
-                <option v-for="hs of config.available_list" :key="hs.name" :value="hs.id"
-                    :selected="hs.id === state?.current_server_id">
-                    {{ hs.name }}
-                </option>
-            </select>
-        </div>
+				<select name="httpserver" @change="onSelect">
+					<option
+						v-for="hs of config.available_list"
+						:key="hs.name"
+						:value="hs.id"
+						:selected="hs.id === state?.current_server_id"
+					>
+						{{ hs.name }}
+					</option>
+				</select>
+			</div>
 
-        <div>
-            <label for="httpserver_config_file">
-                Emplacement du fichier de configuration serveur
-            </label>
+			<div>
+				<label for="httpserver_config_file">
+					Emplacement du fichier de configuration du serveur HTTP
+				</label>
 
-            <input type="text" id="httpserver_config_file" :placeholder="userHttpServer?.default_config_file"
-                :value="userHttpServer?.user_config_file" />
-        </div>
+				<input
+					type="text"
+					id="httpserver_config_file"
+					:placeholder="userHttpServer?.default_config_file"
+					:value="userHttpServer?.user_config_file"
+				/>
+			</div>
 
-        <div>
-            <label for="httpserver_port">
-                Choisir un port
-            </label>
+			<div>
+				<label for="httpserver_port">
+					Choisir le port d'accès au serveur HTTP
+				</label>
 
-            <input type="number" name="httpserver_port" id="httpserver_port" placeholder="80 OR 443 OR 8000..=8999"
-                pattern="^(80|443|8[0-9]{3})$" required min="80" max="8999" :value="userHttpServer?.user_port">
-        </div>
+				<input
+					type="number"
+					name="httpserver_port"
+					id="httpserver_port"
+					placeholder="80 OR 443 OR 8000..=8999"
+					pattern="^(80|443|8[0-9]{3})$"
+					required
+					min="80"
+					max="8999"
+					:value="userHttpServer?.user_port"
+				/>
 
-        <div>
-            <label for="httpserver_working_directory">
-                Emplacement de l'espace de travail
-            </label>
+				<span class="help">{{ httpServerURL }}</span>
+			</div>
 
-            <input type="text" id="httpserver_working_directory" :placeholder="userHttpServer?.default_working_dir"
-                :value="userHttpServer?.user_working_dir" />
-        </div>
+			<div>
+				<input
+					type="checkbox"
+					name="httpserver_options_indexes"
+					id="httpserver_options_indexes"
+					:checked="userHttpServer?.user_autoindex"
+				/>
+				&nbsp;
+				<label for="httpserver_options_indexes">
+					Lister les fichiers lorsque le fichier d'index est manquant
+					dans un répertoire
+				</label>
+			</div>
+		</fieldset>
 
-        <div>
-            <input type="checkbox" name="httpserver_options_indexes" id="httpserver_options_indexes"
-                :checked="userHttpServer?.user_autoindex" />
-            &nbsp;
-            <label for="httpserver_options_indexes">
-                Lister les fichiers lorsque le fichier d'index est manquant dans un répertoire
-            </label>
-        </div>
-    </fieldset>
+		<fieldset>
+			<legend class="h3-like">
+				Espace de travail
+				<button
+					type="button"
+					class="btn-add"
+					title="Nouvel espace de travail"
+				>
+					+
+				</button>
+			</legend>
+
+			<div>
+				<label for="httpserver_working_directory">
+					Emplacement de l'espace de travail
+				</label>
+
+				<template v-if="userHttpServer?.user_working_dir">
+					<input
+						v-for="working_dir of userHttpServer?.user_working_dir"
+						type="text"
+						name="httpserver_working_directory[]"
+						id="httpserver_working_directory"
+						:placeholder="userHttpServer?.default_working_dir"
+						:value="working_dir"
+					/>
+				</template>
+				<template v-else>
+					<input
+						type="text"
+						name="httpserver_working_directory[]"
+						id="httpserver_working_directory"
+						:placeholder="userHttpServer?.default_working_dir"
+					/>
+				</template>
+			</div>
+		</fieldset>
+	</div>
 </template>
+
+<style>
+.btn-add {
+	float: right;
+	border-radius: 99px;
+	background: transparent;
+	cursor: pointer;
+}
+</style>

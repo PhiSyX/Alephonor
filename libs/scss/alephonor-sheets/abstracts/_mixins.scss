@@ -35,3 +35,13 @@
 	width: $length;
 	height: $length;
 }
+
+@mixin full-size($abs: false) {
+	@if $abs {
+		position: absolute;
+		inset: 0;
+	}
+
+	width: 100%;
+	height: 100%;
+}

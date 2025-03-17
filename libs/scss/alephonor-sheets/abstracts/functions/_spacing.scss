@@ -1,0 +1,25 @@
+@use "sass:math";
+@use "sass:meta";
+
+@function radius($variant, $module: null) {
+	@if $module {
+		@return var(--#{$module}-radius-#{$variant});
+	}
+	@return var(--radius-#{$variant});
+}
+
+@function space($variant, $module: null) {
+	@if (meta.type-of($variant) == "number") {
+		@if ($variant <= 10) {
+			@return var(--spacing-#{$variant});
+		}
+		// Multiple de 8
+		$div: math.round(math.div($variant, 8));
+		@return calc(var(--space-sm) * $div);
+	}
+
+	@if $module {
+		@return var(--#{$module}-space-#{$variant});
+	}
+	@return var(--space-#{$variant});
+}

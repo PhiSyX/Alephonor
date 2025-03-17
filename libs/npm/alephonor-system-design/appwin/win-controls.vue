@@ -61,6 +61,9 @@ const emit = defineEmits<Emits>();
 .win\:controls {
 	flex-shrink: 0;
 }
+.win\:controls button {
+	background: transparent;
+}
 .win\:controls button,
 .win\:controls button > svg,
 .win\:controls button > svg * {

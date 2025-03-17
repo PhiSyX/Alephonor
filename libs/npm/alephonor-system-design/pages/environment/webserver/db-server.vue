@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import IconMariadb from "../../../icons/icon-mariadb.vue";
+import IconMysql from "../../../icons/icon-mysql.vue";
+import IconPostgresql from "../../../icons/icon-postgresql.vue";
+
 // ---- //
 // Type //
 // ---- //
@@ -30,35 +34,83 @@ let state = defineModel<State>();
 </script>
 
 <template>
-    <fieldset>
-        <legend class="h2-like">Base de données</legend>
+	<fieldset>
+		<legend class="h2-like">Configuration de la base de données</legend>
 
-        <div>
-            <label for="dbserver">
-                Choisir les bases de données à utiliser
-            </label>
+		<div>
+			<label for="dbserver">
+				Choisir les bases de données à utiliser
+			</label>
 
-            <select id="dbserver" name="dbserver[]" multiple>
-                <option
-                    v-for="dbserver of config.available_list"
-                    :key="dbserver.name"
-                    :value="dbserver.id"
-                    :selected="state?.current_db_id.includes(dbserver.id)"
-                >
-                    {{ dbserver.name }}
-                </option>
-            </select>
-        </div>
+			<div class="dbserver-select">
+				<button type="button" title="MariaDB">
+					<IconMariadb />
+				</button>
 
-        <div>
-            <input
-                type="checkbox"
-                name="dbserver_webadmin"
-                id="dbserver_webadmin"
-                :checked="config.webadmin"
-            >
-            &nbsp;
-            <label for="dbserver_webadmin">Interface d'administration</label>
-        </div>
-    </fieldset>
+				<button type="button" title="MySQL">
+					<IconMysql />
+				</button>
+
+				<button type="button" title="PostgreSQL">
+					<IconPostgresql />
+				</button>
+			</div>
+		</div>
+
+		<div>
+			<label for="db_user">Changer l'utilisateur « root »</label>
+			<input type="text" name="db_user" id="db_user" placeholder="root" />
+		</div>
+
+		<div>
+			<label for="db_pass"
+				>Changer le mot de passe de l'utilisateur « root »</label
+			>
+			<input
+				type="password"
+				name="db_pass"
+				id="db_pass"
+				placeholder="root"
+			/>
+		</div>
+
+		<div>
+			<input
+				type="checkbox"
+				name="dbserver_webadmin"
+				id="dbserver_webadmin"
+				:checked="config.webadmin"
+			/>
+			&nbsp;
+			<label for="dbserver_webadmin">Interface d'administration</label>
+		</div>
+	</fieldset>
 </template>
+
+<style lang="scss" scoped>
+@use "@alephonor/sheets/abstracts/functions" as fn;
+
+.dbserver-select {
+	display: flex;
+	justify-content: space-evenly;
+	height: fn.space(10);
+	margin-block: fn.space(3);
+}
+
+.dbserver-select button {
+	width: fn.space(10);
+	border: 3px solid transparent;
+	border-radius: fn.radius(md);
+	background: transparent;
+	transition: border-color 250ms ease-in-out;
+
+	&,
+	& * {
+		cursor: pointer;
+	}
+
+	&:hover {
+		border-color: fn.color(orange, 200);
+	}
+}
+</style>
