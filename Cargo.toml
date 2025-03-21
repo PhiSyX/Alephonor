@@ -17,7 +17,7 @@ too_long_first_doc_paragraph = "allow"
 
 [workspace.dependencies]
 alephonor-env = { path = "libs/cargo/alephonor-env" }
-serde = { version = "^1.0.218", features = ["derive"] }
+serde = { version = "^1.0.219", features = ["derive"] }
 serde_json = { version = "^1.0.140" }
-thiserror = { version = "^2.0.10" }
-tokio = { version = "^1.43.0", features = ["full"] }
+thiserror = { version = "^2.0.12" }
+tokio = { version = "^1.44.1", features = ["full"] }
