@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 
 import type { AccountInfo } from "@alephonor/domain/entities/account";
-import type { Screen } from "@alephonor/domain/screens/enum";
+import type { Screen } from "@alephonor/domain/pages/enum";
 import SigninScreen from "@alephonor/system-design/screens/signin-screen.vue";
 
 const router = useRouter();

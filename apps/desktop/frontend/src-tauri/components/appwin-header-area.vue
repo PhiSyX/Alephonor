@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Screen } from "@alephonor/domain/screens/enum";
+import { Page } from "@alephonor/domain/pages/enum";
 import AppWinControlsArea from "@alephonor/system-design/appwin/header-area.vue";
 import { getCurrentWindow } from "@tauri-apps/api/window";
 import { type as tauriOsType } from "@tauri-apps/plugin-os";
@@ -13,8 +13,8 @@ const osType = tauriOsType();
 
 const direction = osType === "macos" ? "rtl" : "auto";
 
-const showTitle = computed(() => route.name !== Screen.SignIn);
-const showSearchbar = computed(() => route.name !== Screen.SignIn);
+const showTitle = computed(() => route.name !== Page.SignIn);
+const showSearchbar = computed(() => route.name !== Page.SignIn);
 
 watch(
 	() => route.meta.title as string,

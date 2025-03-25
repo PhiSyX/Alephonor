@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from "vue-router";
 
-import { Screen } from "@alephonor/domain/screens/enum";
+import { Page } from "@alephonor/domain/pages/enum";
 
 // -------- //
 // Constant //
@@ -9,14 +9,14 @@ import { Screen } from "@alephonor/domain/screens/enum";
 export const ROUTES: Array<RouteRecordRaw> = [
 	{
 		path: "/",
-		component: () => import("../screens/signin-screen.vue"),
+		component: () => import("../pages/signin-page.vue"),
 		strict: true,
-		name: Screen.SignIn,
+		name: Page.SignIn,
 	},
 	// Dashboard
 	{
 		path: "/dashboard",
-		component: () => import("../screens/dashboard-screen.vue"),
+		component: () => import("../pages/dashboard-page.vue"),
 		strict: true,
 		meta: {
 			title: "Dashboard",
@@ -25,20 +25,23 @@ export const ROUTES: Array<RouteRecordRaw> = [
 			{
 				path: "",
 				component: () =>
-					import("@alephonor/system-design/dashboard/resume.vue"),
+					import(
+						"@alephonor/system-design/pages/dashboard/resume-page.vue"
+					),
 				strict: true,
-				name: Screen.Dashboard,
+				name: Page.Dashboard,
 			},
 		],
 	},
 	// Env
 	{
 		path: "/env",
-		component: () => import("../screens/dashboard-screen.vue"),
+		component: () => import("../pages/dashboard-page.vue"),
 		children: [
 			{
 				path: "webserver",
-				component: () => import("../pages/environment/webserver.vue"),
+				component: () =>
+					import("../pages/environment/webserver-page.vue"),
 				meta: {
 					title: "Environnement « Serveur Web »",
 				},

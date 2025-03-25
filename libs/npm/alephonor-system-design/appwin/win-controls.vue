@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import IconClose from "../icons/icon-close.vue";
-import IconMaximize from "../icons/icon-maximize.vue";
-import IconMinimize from "../icons/icon-minimize.vue";
+import IconClose from "../components/icons/icon-close.vue";
+import IconMaximize from "../components/icons/icon-maximize.vue";
+import IconMinimize from "../components/icons/icon-minimize.vue";
 
 interface Props {
 	// TODO

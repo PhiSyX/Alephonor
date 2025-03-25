@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 
 import type { Service } from "@alephonor/domain/entities/service";
-import type { Screen } from "@alephonor/domain/screens/enum";
+import type { Page } from "@alephonor/domain/pages/enum";
 
 import DashboardScreen from "@alephonor/system-design/screens/dashboard-screen.vue";
 
@@ -40,7 +40,7 @@ function sleep(ms: number) {
 	return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function changeScreen(s: Screen) {
+function changePage(s: Page) {
 	router.push({ name: s });
 }
 
@@ -92,6 +92,6 @@ async function callBackend<T>(name: string, args?: object): Promise<T> {
 	<DashboardScreen
 		v-model="services"
 		@call-backend="callBackend"
-		@change-screen="changeScreen"
+		@change-page="changePage"
 	/>
 </template>

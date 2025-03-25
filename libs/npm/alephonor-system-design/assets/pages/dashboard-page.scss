@@ -1,13 +1,13 @@
 @use "@alephonor/sheets/abstracts/functions" as fn;
 @use "@alephonor/sheets/abstracts/mixins" as mx;
 
-.dashboard\:screen {
+.dashboard\:page {
 	display: flex;
 	height: 100%;
 	overflow: hidden;
 }
 
-.dashboard\:screen > aside {
+.dashboard\:page > aside {
 	flex-shrink: 0;
 
 	display: grid;
@@ -19,7 +19,7 @@
 	overflow: auto;
 }
 
-.dashboard\:screen details summary {
+.dashboard\:page details summary {
 	position: sticky;
 	top: calc(0px - fn.space(sm));
 	overflow: hidden;
@@ -28,23 +28,23 @@
 	background: fn.color(black);
 }
 
-.dashboard\:screen details summary::marker,
-.dashboard\:screen details summary::-webkit-details-marker {
+.dashboard\:page details summary::marker,
+.dashboard\:page details summary::-webkit-details-marker {
 	display: none;
 }
 
-.dashboard\:screen nav[role="navigation"] {
+.dashboard\:page nav[role="navigation"] {
 	overflow: auto;
 }
 
-.dashboard\:screen nav[role="navigation"] ul[role="tablist"] {
+.dashboard\:page nav[role="navigation"] ul[role="tablist"] {
 	display: grid;
 	gap: fn.space(sm);
 	padding-inline: fn.space(sm);
 	overflow: auto;
 }
 
-.dashboard\:screen nav[role="navigation"] ul[role="tablist"] > li {
+.dashboard\:page nav[role="navigation"] ul[role="tablist"] > li {
 	display: flex;
 	gap: fn.space(sm);
 	padding: 0.25rem;
@@ -82,11 +82,11 @@
 	}
 }
 
-.dashboard\:screen\:content {
+.dashboard\:page\:content {
 	flex-grow: 1;
 	padding: fn.space(md);
 	@include mx.bgcolor(dashboard-environments);
-	background-image: var(--dashboard-screen);
+	background-image: var(--dashboard-page);
 	background-origin: border-box;
 	background-position: center;
 	background-size: cover;

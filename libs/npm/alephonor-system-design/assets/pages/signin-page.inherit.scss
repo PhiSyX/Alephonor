@@ -2,7 +2,7 @@ $input-surface: transparent !default;
 $input-surface-alt: transparent !default;
 $input-on-surface: transparent !default;
 
-@layer screens {
+@layer pages {
 	.auth-container {
 		--input-surface: #{$input-surface};
 		--input-surface-alt: #{$input-surface-alt};

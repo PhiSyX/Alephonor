@@ -1,0 +1,66 @@
+@use "@alephonor/sheets/abstracts/functions" as fn;
+@use "@alephonor/sheets/abstracts/mixins" as mx;
+
+.env\:webserver .form-webserver-group {
+	legend {
+		width: 100%;
+	}
+
+	.help {
+		color: fn.color(grey);
+		font-size: 12px;
+	}
+
+	select,
+	input[type="number"],
+	input[type="password"],
+	input[type="text"] {
+		width: 100%;
+		padding: fn.space(sm);
+		border-radius: 6px;
+		background: fn.bg(black);
+		color: fn.color(white);
+		appearance: none;
+	}
+
+	input[type="checkbox"] {
+		@include mx.size(24);
+
+		padding: 12px;
+		outline: none !important;
+		border: 1px solid fn.color(blue-grey, 200);
+		border-radius: fn.radius(sm);
+		background: fn.bg(blue-grey, 100);
+		appearance: none;
+
+		&:hover {
+			border-style: inset;
+		}
+
+		&:checked {
+			border-style: inset;
+			background: fn.bg(blue-grey, 200);
+			background-image: fn.svg(
+				'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.00001 20.42L2.79001 14.21L5.62001 11.38L9.00001 14.77L18.88 4.88L21.71 7.71L9.00001 20.42Z" fill="currentColor" /></svg>'
+			);
+		}
+
+		&:active {
+			border-style: outset;
+		}
+	}
+
+	select option {
+		color: fn.color(white);
+	}
+}
+
+.env\:webserver div.form-webserver-group fieldset,
+.env\:webserver fieldset.form-webserver-group {
+	display: grid;
+	gap: fn.space(md);
+
+	> div > * + * {
+		margin-top: 0.25rem;
+	}
+}

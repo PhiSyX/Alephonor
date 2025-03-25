@@ -1,7 +1,7 @@
 @use "@alephonor/sheets/abstracts/functions" as fn;
 @use "@alephonor/sheets/abstracts/mixins" as mx;
 
-.dashboard\:screen\:environments {
+.dashboard\:page\:environments {
 	h1 {
 		padding-block: fn.space(md);
 		/* fixme */

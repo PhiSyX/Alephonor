@@ -1,0 +1,42 @@
+@use "@alephonor/sheets/abstracts/functions" as fn;
+
+.container {
+	max-width: 80ch;
+	margin-inline: auto;
+}
+
+.breadcrumb {
+	padding: fn.space(md);
+}
+
+.breadcrumb {
+	position: sticky;
+	top: 0;
+	backdrop-filter: blur(3px);
+	display: flex;
+	align-items: center;
+	margin-bottom: fn.space(lg);
+	border-bottom: 1px solid fn.color(blue-grey, 100);
+}
+
+.breadcrumb ul {
+	display: flex;
+	gap: fn.space(sm);
+	flex-grow: 1;
+}
+
+.breadcrumb ul li {
+	padding: 4px;
+	border: 1px solid fn.color(blue-grey, 200);
+	border-radius: fn.radius(sm);
+	background: fn.bg(blue-grey, 100);
+}
+
+button[type="submit"] {
+	margin-left: auto;
+
+	padding: fn.space(sm);
+	border-radius: 6px;
+	background: fn.bg(black);
+	color: fn.color(white);
+}

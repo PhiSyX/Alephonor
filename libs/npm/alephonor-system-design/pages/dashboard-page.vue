@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import type { Service } from "@alephonor/domain/entities/service";
-import type { ScreenEmits } from "./index";
+import type { PageEmits } from "./index";
 
 interface Props {
 	onCallBackend<T>(pathname: string, data?: object): Promise<T>;
 }
 
-interface Emits extends ScreenEmits {}
+interface Emits extends PageEmits {}
 
 interface Slots {
 	default: {
@@ -24,7 +24,7 @@ let servicesModel = defineModel<DefaultModel>();
 </script>
 
 <template>
-	<section class="dashboard:screen">
+	<section class="dashboard:page">
 		<aside>
 			<details open>
 				<summary>Environnements</summary>
@@ -100,16 +100,16 @@ let servicesModel = defineModel<DefaultModel>();
 			</details>
 		</aside>
 
-		<section class="dashboard:screen:content">
+		<section class="dashboard:page:content">
 			<slot :services="servicesModel" @call-backend="onCallBackend" />
 		</section>
 	</section>
 </template>
 
 <style lang="scss">
-@use "./dashboard-screen.root";
+@use "../assets/pages/dashboard-page.root";
 </style>
 
 <style lang="scss" scoped>
-@use "./dashboard-screen";
+@use "../assets/pages/dashboard-page";
 </style>

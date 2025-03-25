@@ -2,7 +2,7 @@
 import { appLocalDataDir, join } from "@tauri-apps/api/path";
 import { reactive } from "vue";
 
-import Webserver from "@alephonor/system-design/pages/environment/webserver.vue";
+import Webserver from "@alephonor/system-design/pages/environment/webserver-page.vue";
 
 // ex data from db
 const data_config = {

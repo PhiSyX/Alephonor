@@ -4,8 +4,8 @@ import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 
 import type { AccountInfo } from "@alephonor/domain/entities/account";
-import type { Screen } from "@alephonor/domain/screens/enum";
-import SigninScreen from "@alephonor/system-design/screens/signin-screen.vue";
+import type { Page } from "@alephonor/domain/pages/enum";
+import SigninPage from "@alephonor/system-design/pages/signin-page.vue";
 
 const router = useRouter();
 
@@ -15,7 +15,7 @@ onMounted(async () => {
 	accountInfo.value = await invoke<AccountInfo>("account_info");
 });
 
-function changeScreen(s: Screen) {
+function changePage(s: Page) {
 	router.push({ name: s });
 }
 
@@ -25,9 +25,9 @@ function handleSubmit(rawPassword: string): Promise<boolean> {
 </script>
 
 <template>
-	<SigninScreen
+	<SigninPage
 		:account-info="accountInfo"
 		@submit="handleSubmit"
-		@change-screen="changeScreen"
+		@change-page="changePage"
 	/>
 </template>

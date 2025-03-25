@@ -11,7 +11,7 @@ defineOptions({
 	inheritAttrs: false,
 	components: {
 		IconPassword: defineAsyncComponent(
-			() => import("../icons/icon-password.vue")
+			() => import("../components/icons/icon-password.vue")
 		),
 	},
 });
@@ -32,9 +32,9 @@ const model = defineModel();
 </template>
 
 <style lang="scss">
-@use "./input.root";
+@use "../assets/components/input.root";
 </style>
 
 <style lang="scss" scoped>
-@use "./input";
+@use "../assets/components/input";
 </style>

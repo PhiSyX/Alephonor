@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import IconMariadb from "../../../icons/icon-mariadb.vue";
-import IconMysql from "../../../icons/icon-mysql.vue";
-import IconPostgresql from "../../../icons/icon-postgresql.vue";
+import IconMariadb from "../../../components/icons/icon-mariadb.vue";
+import IconMysql from "../../../components/icons/icon-mysql.vue";
+import IconPostgresql from "../../../components/icons/icon-postgresql.vue";
 
 // ---- //
 // Type //

@@ -2,9 +2,9 @@
 import { computed, ref } from "vue";
 
 import type { AccountInfo } from "@alephonor/domain/entities/account";
-import type { ScreenEmits } from "./index";
+import type { PageEmits } from "./index";
 
-import { Screen } from "@alephonor/domain/screens/enum";
+import { Page } from "@alephonor/domain/pages/enum";
 
 import Input from "../components/input.vue";
 
@@ -13,7 +13,7 @@ interface Props {
 	onSubmit(rawPassword: string): Promise<boolean>;
 }
 
-interface Emits extends ScreenEmits {}
+interface Emits extends PageEmits {}
 
 const { accountInfo, onSubmit } = defineProps<Props>();
 const emits = defineEmits<Emits>();
@@ -92,8 +92,8 @@ async function post_account_form() {
 
 	passwordModel.value = "";
 
-	if (success && screen) {
-		emits("change-screen", Screen.Dashboard);
+	if (success && Page) {
+		emits("change-page", Page.Dashboard);
 	}
 
 	passwordInvalid.value = !success;
@@ -158,13 +158,13 @@ async function post_account_form() {
 </template>
 
 <style lang="scss">
-@use "./signin-screen.root";
+@use "../assets/pages/signin-page.root";
 </style>
 
 <style lang="scss">
 // NOTE: la syntaxe "#styles/..." ne fonctionne pas avec scss...
 // NOTE: comment appliquer un layer avec scss ?
-@use "./signin-screen.inherit.scss" with (
+@use "../assets/pages/signin-page.inherit" with (
 	$input-surface: v-bind(randomBgColor),
 	$input-surface-alt: v-bind(randomBgColorAlt),
 	$input-on-surface: v-bind(randomColor)
@@ -174,7 +174,7 @@ async function post_account_form() {
 <style scoped lang="scss">
 // NOTE: la syntaxe "#styles/..." ne fonctionne pas avec scss...
 // NOTE: comment appliquer un layer avec scss ?
-@use "./signin-screen.scss" with (
+@use "../assets/pages/signin-page" with (
 	$auth-title-small-surface: v-bind(randomBgColor),
 	$auth-title-small-on-surface: v-bind(randomColor)
 );

@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from "vue-router";
 
-import { Screen } from "@alephonor/domain/screens/enum";
+import { Page } from "@alephonor/domain/pages/enum";
 
 // -------- //
 // Constant //
@@ -9,14 +9,14 @@ import { Screen } from "@alephonor/domain/screens/enum";
 export const ROUTES: Array<RouteRecordRaw> = [
 	{
 		path: "/",
-		component: () => import("../screens/signin-screen.vue"),
+		component: () => import("../pages/signin-page.vue"),
 		strict: true,
-		name: Screen.SignIn,
+		name: Page.SignIn,
 	},
 	{
 		path: "/dashboard",
-		component: () => import("../screens/dashboard-screen.vue"),
+		component: () => import("../pages/dashboard-page.vue"),
 		strict: true,
-		name: Screen.Dashboard,
+		name: Page.Dashboard,
 	},
 ];

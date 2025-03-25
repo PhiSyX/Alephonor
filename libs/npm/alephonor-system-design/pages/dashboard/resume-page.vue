@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Service } from "@alephonor/domain/entities/service";
 
-import ApplicationService from "../services/application-service.vue";
+import ApplicationService from "./services/application-service.vue";
 
 export interface Props {
 	services: Array<Service>;
@@ -11,7 +11,7 @@ export interface Props {
 defineProps<Props>();
 </script>
 <template>
-	<div class="dashboard:screen:environments">
+	<div class="dashboard:page:environments">
 		<h1>
 			Gérer les environnements
 			<button type="button">Nouvel environnement</button>
@@ -29,5 +29,5 @@ defineProps<Props>();
 </template>
 
 <style lang="scss" scoped>
-@use "./resume";
+@use "../../assets/pages/dashboard-resume-page.scss";
 </style>

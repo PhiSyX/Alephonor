@@ -3,7 +3,7 @@ import { computed, onMounted, shallowRef } from "vue";
 
 import type { Service } from "@alephonor/domain/entities/service";
 
-import IconLoader from "../icons/icon-loader.vue";
+import IconLoader from "../../../components/icons/icon-loader.vue";
 
 export interface Props {
 	service: Service;
@@ -108,5 +108,5 @@ onMounted(async () => await checkService());
 </template>
 
 <style lang="scss" scoped>
-@use "./application-service";
+@use "../../../assets/pages/dashboard-resume-application-service.scss";
 </style>

@@ -5,7 +5,7 @@
 	--dashboard-environments-on-surface: #{fn.color(black)};
 }
 
-.dashboard\:screen\:content {
+.dashboard\:page\:content {
 	* {
 		color: fn.color(dashboard-environments);
 	}

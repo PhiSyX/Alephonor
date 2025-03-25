@@ -1,4 +1,4 @@
-export enum Screen {
+export enum Page {
 	Dashboard = "Dashboard",
 	SignIn = "SignIn",
 }

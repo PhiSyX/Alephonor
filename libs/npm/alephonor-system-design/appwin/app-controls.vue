@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import IconTheme from "../icons/icon-theme.vue";
+import IconTheme from "../components/icons/icon-theme.vue";
 
 interface Emits {
 	(evtName: "toggle-theme"): void;
